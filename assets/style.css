@@ -12,6 +12,10 @@ body {
   display: block;
 }
 
+.d-none {
+  display: none;
+}
+
 /* NAVBAR STYLING */
 
 .navbar {
@@ -22,9 +26,9 @@ body {
   border-bottom: 1px solid #efefef;
 }
 
+/* MAIN STYLING */
 .wrapper {
   display: flex;
-
   justify-content: center;
   align-items: center;
   height: 700px;
@@ -37,7 +41,6 @@ body {
 }
 
 .button {
-  position: absolute;
   background-color: #0a0a23;
   color: #fff;
   border: none;
