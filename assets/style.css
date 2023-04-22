@@ -4,10 +4,20 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Constantia Regular", "Constantia Regular", serif;
+  font-family: serif;
 }
 
 body {
   height: 100%;
   display: block;
+}
+
+/* NAVBAR STYLING */
+
+.navbar {
+  padding: 25px 50px;
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  border-bottom: 1px solid #efefef;
 }
