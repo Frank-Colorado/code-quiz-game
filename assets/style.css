@@ -21,3 +21,28 @@ body {
   color: black;
   border-bottom: 1px solid #efefef;
 }
+
+.wrapper {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  width: 765px;
+  color: white;
+  background: #272639;
+  border-radius: 1rem;
+  padding: 1.2rem;
+  margin: 100px auto;
+}
+
+.button {
+  position: absolute;
+  background-color: #0a0a23;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  min-height: 30px;
+  min-width: 120px;
+}
