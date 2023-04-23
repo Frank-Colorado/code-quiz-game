@@ -17,13 +17,18 @@
     </header>
 
     <main class="wrapper">
-      <h1>Simple Quiz</h1>
-      <div class="d-none">
-        <button class="startBtn">CLICK TO START QUIZ</button>
+      <h1>Code Quiz</h1>
+      <div id="home" class="container">
+        <p class="homeTxt">
+          Try to answer the following code-related questions withing the time
+          limit. Keep in mind that incorrect answers will penalize your
+          score/time by ten seconds!
+        </p>
+        <button id="start" class="startBtn">START QUIZ</button>
       </div>
-      <div class="quiz">
+      <div id="quiz" class="container d-none">
         <h2 id="question">QUESTION: This is a placeholder question...?</h2>
-        <div id="answerBtns">
+        <div id="answers">
           <button class="btn">Answer 1</button>
           <button class="btn">Answer 2</button>
           <button class="btn">Answer 3</button>
