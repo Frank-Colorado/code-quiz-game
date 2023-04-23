@@ -24,6 +24,13 @@ button {
   padding: 15px;
 }
 
+ol {
+  list-style-position: inside;
+}
+
+li {
+  padding: 5px 0px;
+}
 .d-none {
   display: none;
 }
@@ -130,4 +137,18 @@ button {
   height: 45px;
   width: 25%;
   cursor: pointer;
+}
+
+/* HIGH SCORES STYLING */
+
+.highScoresTxt {
+  font-size: 25px;
+  font-weight: 700;
+  padding-bottom: 15px;
+}
+
+.scoreListContainer {
+  width: 25%;
+  justify-content: center;
+  text-align: center;
 }
