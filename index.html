@@ -30,7 +30,7 @@
           limit. Keep in mind that incorrect answers will penalize your
           score/time by ten seconds!
         </p>
-        <button id="start" class="btn">START QUIZ</button>
+        <button id="startBtn" class="btn">START QUIZ</button>
       </div>
       <!-- QUIZ SECTION -->
       <div id="quiz" class="container d-none">
@@ -38,10 +38,10 @@
           QUESTION 1 : This is a placeholder question...?
         </h2>
         <div id="answers">
-          <button class="answerBtn">A. Answer Choice</button>
-          <button class="answerBtn">B. Answer Choice</button>
-          <button class="answerBtn">C. Answer Choice</button>
-          <button class="answerBtn">D. Answer Choice</button>
+          <button class="answerBtn" value="">A. Answer Choice</button>
+          <button class="answerBtn" value="">B. Answer Choice</button>
+          <button class="answerBtn" value="">C. Answer Choice</button>
+          <button class="answerBtn" value="">D. Answer Choice</button>
         </div>
       </div>
       <!-- FINAL SCORE SECTION -->
@@ -50,7 +50,7 @@
         <div class="inputContainer">
           <label for="initials">Enter Your Initials :</label>
           <input type="text" id="initials" class="input" value="" />
-          <button class="btn inputBtn">Submit</button>
+          <button id="initialBtn" class="btn inputBtn">Submit</button>
         </div>
       </div>
       <!-- HIGH SCORES SECTION-->
@@ -64,8 +64,8 @@
           <li>FC 8</li>
         </ol>
         <div class="btnContainer">
-          <button class="btn">Back to Home</button>
-          <button class="btn">Clear Scores</button>
+          <button id="homeBtn" class="btn">Back to Home</button>
+          <button id="clearBtn" class="btn">Clear Scores</button>
         </div>
       </div>
     </main>
