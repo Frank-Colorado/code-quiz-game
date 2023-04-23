@@ -45,22 +45,29 @@
         </div>
       </div>
       <!-- FINAL SCORE SECTION -->
-      <div id="finalScore" class="container">
+      <div id="finalScore" class="container d-none">
         <h2 id="userScore" class="userScoreTxt">Final Score : 25</h2>
         <div class="inputContainer">
           <label for="initials">Enter Your Initials :</label>
-          <input
-            type="text"
-            id="initials"
-            name="initials"
-            class="input"
-            value=""
-          />
+          <input type="text" id="initials" class="input" value="" />
           <button class="inputBtn">Submit</button>
         </div>
       </div>
       <!-- HIGH SCORES SECTION-->
-      <div id="allScores" class="container d-none"></div>
+      <div id="highScores" class="container">
+        <h2>High Scores</h2>
+        <ol>
+          <li>FC 46</li>
+          <li>FC 33</li>
+          <li>FC 24</li>
+          <li>FC 17</li>
+          <li>FC 8</li>
+        </ol>
+        <div class="btnContainer">
+          <button>Back to Home</button>
+          <button>Clear Scores</button>
+        </div>
+      </div>
     </main>
     <script src="./assets/script.js"></script>
   </body>
