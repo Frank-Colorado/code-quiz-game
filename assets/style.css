@@ -4,7 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
@@ -64,8 +64,8 @@ button {
 
 /* HOME PAGE STYLING */
 .homeTxt {
-  font-size: 24px;
-  font-weight: 200;
+  font-size: 23px;
+  font-weight: 300;
 }
 .startBtn {
   border: none;
