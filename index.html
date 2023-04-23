@@ -20,9 +20,10 @@
       </h2>
       <h2>Time: 0</h2>
     </header>
-
+    <!-- MAIN SECTION -->
     <main class="wrapper">
       <h1 id="response">Quiz Completed!</h1>
+      <!-- HOME PAGE SECTION -->
       <div id="home" class="container d-none">
         <p class="homeTxt">
           Try to answer the following code-related questions withing the time
@@ -31,22 +32,27 @@
         </p>
         <button id="start" class="startBtn">START QUIZ</button>
       </div>
-      <div id="quiz" class="container d-none">
-        <h2 id="question">QUESTION: This is a placeholder question...?</h2>
+      <!-- QUIZ SECTION -->
+      <div id="quiz" class="container">
+        <h2 id="question" class="questionTxt">
+          QUESTION 1 : This is a placeholder question...?
+        </h2>
         <div id="answers">
-          <button class="btn">Answer 1</button>
-          <button class="btn">Answer 2</button>
-          <button class="btn">Answer 3</button>
-          <button class="btn">Answer 4</button>
-        </div>
+          <button class="btn">A. Answer Choice</button>
+          <button class="btn">B. Answer Choice</button>
+          <button class="btn">C. Answer Choice</button>
+          <button class="btn">D. Answer Choice</button>
+        </div
       </div>
-      <div id="finalScore" class="container">
+      <!-- FINAL SCORE SECTION -->
+      <div id="finalScore" class="container d-none">
         <h2 id="userScore">Final Score : 25</h2>
         <div class="userInitials">
           <h3>Enter Your Initials :</h3>
           <input type="text" id="initialsInput" placeholder="..." />
         </div>
       </div>
+      <!-- HIGH SCORES SECTION-->
       <div id="allScores" class="container d-none"></div>
     </main>
     <script src="./assets/script.js"></script>

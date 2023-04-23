@@ -63,6 +63,7 @@ button {
 }
 
 /* HOME PAGE STYLING */
+
 .homeTxt {
   font-size: 23px;
   font-weight: 300;
@@ -77,9 +78,10 @@ button {
 
 /* QUIZ STYLING */
 
-.quiz h2 {
-  font-size: 16px;
+.questionTxt {
+  font-size: 21px;
   font-weight: 600;
+  text-align: left;
 }
 
 .btn {
