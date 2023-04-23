@@ -22,8 +22,8 @@
     </header>
 
     <main class="wrapper">
-      <h1>Code Quiz</h1>
-      <div id="home" class="container">
+      <h1 id="response">Quiz Completed!</h1>
+      <div id="home" class="container d-none">
         <p class="homeTxt">
           Try to answer the following code-related questions withing the time
           limit. Keep in mind that incorrect answers will penalize your
@@ -40,6 +40,14 @@
           <button class="btn">Answer 4</button>
         </div>
       </div>
+      <div id="finalScore" class="container">
+        <h2 id="userScore">Final Score : 25</h2>
+        <div class="userInitials">
+          <h3>Enter Your Initials :</h3>
+          <input type="text" id="initialsInput" placeholder="..." />
+        </div>
+      </div>
+      <div id="allScores" class="container d-none"></div>
     </main>
     <script src="./assets/script.js"></script>
   </body>
