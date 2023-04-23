@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   font-family: "Montserrat", sans-serif;
+  color: white;
 }
 
 body {
@@ -91,3 +92,5 @@ button {
   text-align: left;
   cursor: pointer;
 }
+
+/* FINAL SCORE STYLING */

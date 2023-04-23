@@ -33,7 +33,7 @@
         <button id="start" class="startBtn">START QUIZ</button>
       </div>
       <!-- QUIZ SECTION -->
-      <div id="quiz" class="container">
+      <div id="quiz" class="container d-none">
         <h2 id="question" class="questionTxt">
           QUESTION 1 : This is a placeholder question...?
         </h2>
@@ -42,14 +42,21 @@
           <button class="btn">B. Answer Choice</button>
           <button class="btn">C. Answer Choice</button>
           <button class="btn">D. Answer Choice</button>
-        </div
+        </div>
       </div>
       <!-- FINAL SCORE SECTION -->
-      <div id="finalScore" class="container d-none">
-        <h2 id="userScore">Final Score : 25</h2>
-        <div class="userInitials">
-          <h3>Enter Your Initials :</h3>
-          <input type="text" id="initialsInput" placeholder="..." />
+      <div id="finalScore" class="container">
+        <h2 id="userScore" class="userScoreTxt">Final Score : 25</h2>
+        <div class="inputContainer">
+          <label for="initials">Enter Your Initials :</label>
+          <input
+            type="text"
+            id="initials"
+            name="initials"
+            class="input"
+            value=""
+          />
+          <button class="inputBtn">Submit</button>
         </div>
       </div>
       <!-- HIGH SCORES SECTION-->
