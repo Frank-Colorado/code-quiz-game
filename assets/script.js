@@ -30,11 +30,15 @@ const scoreListDisplay = document.getElementById("scoreList");
 const homeBtn = document.getElementById("homeBtn");
 const clearBtn = document.getElementById("clearBtn");
 
-const changeDisplay = (hide, show) => {
+// function that changes the display of the Main Section
+const changeMainDisplay = (hide, show) => {
   hide.classList.add("d-none");
   show.classList.remove("d-none");
   return;
 };
+
+const changeTimerDisplay = (time) =>
+  (timerDisplay.innerText = `Time : ${time}`);
 
 // Quiz Class
 class Quiz {
@@ -49,12 +53,13 @@ const quiz = new Quiz();
 
 // function that starts quiz and countdown timer
 const startQuiz = () => {
-  changeDisplay(homePageDiv, quizDiv);
+  changeMainDisplay(homePageDiv, quizDiv);
   let intervalId = setInterval(function () {
     if (!quiz.isOver) {
+      changeTimerDisplay(quiz.timer);
       quiz.timer--;
-      console.log(quiz.timer);
     } else {
+      console.log("Times up!");
       clearInterval(intervalId);
       intervalId = null;
       quiz.timer = 5;
