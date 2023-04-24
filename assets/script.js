@@ -45,10 +45,24 @@ const changeDisplay = (display, content) => (display.innerHTML = content);
 class Quiz {
   constructor() {
     this.isOver = false;
-    this.timer = 180;
+    this.timer = 10;
     this.questionCounter = 0;
     this.currentQuestion;
     this.randomQuestions = [];
+  }
+
+  countdown() {
+    let intervalId = setInterval(function () {
+      if (quiz.timer >= 0) {
+        changeDisplay(timerDisplay, quiz.timer);
+        quiz.timer--;
+      } else {
+        console.log("Times up!");
+        clearInterval(intervalId);
+        intervalId = null;
+        quiz.timer = 10;
+      }
+    }, 1000);
   }
 
   setQuestions() {
@@ -79,17 +93,7 @@ const quiz = new Quiz();
 // function that starts quiz and countdown timer
 const startQuiz = () => {
   changeMainDisplay(homePageDiv, quizDiv);
-  let intervalId = setInterval(function () {
-    if (!quiz.isOver) {
-      changeDisplay(timerDisplay, quiz.timer);
-      quiz.timer--;
-    } else {
-      console.log("Times up!");
-      clearInterval(intervalId);
-      intervalId = null;
-      quiz.timer = 5;
-    }
-  }, 1000);
+  quiz.countdown();
   quiz.setQuestions();
   quiz.getQuestion();
 };
