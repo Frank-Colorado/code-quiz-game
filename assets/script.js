@@ -62,6 +62,19 @@ class Quiz {
     });
     console.log(this.randomQuestions);
   }
+
+  getQuestion() {
+    const counter = `Question ${(this.questionCounter += 1)} of ${
+      this.randomQuestions.length
+    }`;
+    changeMainHeaderDisplay(counter);
+
+    const questionIndex =
+      this.randomQuestions[
+        Math.floor(Math.random() * this.randomQuestions.length)
+      ];
+    this.currentQuestion = questionIndex;
+  }
 }
 
 // new quiz variable created using Quiz Class
