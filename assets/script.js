@@ -30,6 +30,7 @@ const scoreListDisplay = document.getElementById("scoreList");
 const homeBtn = document.getElementById("homeBtn");
 const clearBtn = document.getElementById("clearBtn");
 
+// helper function that changes the display of the Main Header
 const changeMainHeaderDisplay = (content) =>
   (mainHeaderDisplay.innerHTML = content);
 
@@ -78,28 +79,6 @@ const startQuiz = () => {
 //   responseDisplay.innerText = "Quiz is over!";
 //   finalScoreDiv.classList.remove("d-none");
 //   userScoreDisplay.innerText = `Final Score : ${quiz.timer}`;
-// };
-
-// //Countdown function
-// const countdown = () => {
-//   console.log(quiz.timer);
-//   if (quiz.timer === 0) {
-//     clearInterval(interval);
-//     endQuiz();
-//     // call function that ends quiz
-//   } else {
-//     quiz.timer--;
-//     timerDisplay.innerText = `Time: ${quiz.timer}`;
-//   }
-// };
-
-// // Start Quiz Function
-// const startQuiz = () => {
-//   quiz.quizOver = false;
-//   homePageDiv.classList.add("d-none");
-//   responseDisplay.innerText = "";
-//   quizDiv.classList.remove("d-none");
-//   interval = setInterval(countdown, 1000);
 // };
 
 // // Submit Score function
