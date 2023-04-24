@@ -54,6 +54,14 @@ li {
   color: black;
 }
 
+.timerDiv {
+  display: flex;
+}
+
+.timerDiv #timer {
+  padding-left: 5px;
+}
+
 /* MAIN STYLING */
 .wrapper {
   display: flex;
