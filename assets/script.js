@@ -30,21 +30,20 @@ const scoreListDisplay = document.getElementById("scoreList");
 const homeBtn = document.getElementById("homeBtn");
 const clearBtn = document.getElementById("clearBtn");
 
-// helper function that changes the display of the Main Header
-const changeMainHeaderDisplay = (content) =>
-  (mainHeaderDisplay.innerHTML = content);
+// helper function that changes the display of the Quiz Timer
+const changeTimerDisplay = (time) =>
+  (timerDisplay.innerHTML = `Time : ${time}`);
 
 // helper function that changes the display of the Main Section
 const changeMainDisplay = (hide, show) => {
   hide.classList.add("d-none");
   show.classList.remove("d-none");
-  changeMainHeaderDisplay("");
+  changeDisplay(mainHeaderDisplay, "");
   return;
 };
 
-// helper function that changes the display of the Quiz Timer
-const changeTimerDisplay = (time) =>
-  (timerDisplay.innerHTML = `Time : ${time}`);
+// helper function that changes the display of the Main Header
+const changeDisplay = (display, content) => (display.innerHTML = content);
 
 // Quiz Class
 class Quiz {
@@ -67,13 +66,14 @@ class Quiz {
     const counter = `Question ${(this.questionCounter += 1)} of ${
       this.randomQuestions.length
     }`;
-    changeMainHeaderDisplay(counter);
+    changeDisplay(mainHeaderDisplay, counter);
 
     const questionIndex =
       this.randomQuestions[
         Math.floor(Math.random() * this.randomQuestions.length)
       ];
     this.currentQuestion = questionIndex;
+    changeDisplay(questionDisplay, this.currentQuestion.q);
   }
 }
 
@@ -82,6 +82,7 @@ const quiz = new Quiz();
 
 // function that starts quiz and countdown timer
 const startQuiz = () => {
+  changeMainDisplay(homePageDiv, quizDiv);
   quiz.setQuestions();
   quiz.getQuestion();
 };
