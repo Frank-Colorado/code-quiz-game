@@ -29,6 +29,11 @@ const highScoresDiv = document.getElementById("highScores");
 const homeBtn = document.getElementById("homeBtn");
 const clearBtn = document.getElementById("clearBtn");
 
+// Quiz Properties Object
+const quizProperties = {
+  quizOver: True,
+};
+
 // Start Quiz Function
 const startQuiz = () => {
   homePageDiv.classList.add("d-none");
