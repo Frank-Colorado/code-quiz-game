@@ -30,10 +30,6 @@ const scoreListDisplay = document.getElementById("scoreList");
 const homeBtn = document.getElementById("homeBtn");
 const clearBtn = document.getElementById("clearBtn");
 
-// helper function that changes the display of the Quiz Timer
-const changeTimerDisplay = (time) =>
-  (timerDisplay.innerHTML = `Time : ${time}`);
-
 // helper function that changes the display of the Main Section
 const changeMainDisplay = (hide, show) => {
   hide.classList.add("d-none");
@@ -83,6 +79,17 @@ const quiz = new Quiz();
 // function that starts quiz and countdown timer
 const startQuiz = () => {
   changeMainDisplay(homePageDiv, quizDiv);
+  let intervalId = setInterval(function () {
+    if (!quiz.isOver) {
+      changeDisplay(timerDisplay, quiz.timer);
+      quiz.timer--;
+    } else {
+      console.log("Times up!");
+      clearInterval(intervalId);
+      intervalId = null;
+      quiz.timer = 5;
+    }
+  }, 1000);
   quiz.setQuestions();
   quiz.getQuestion();
 };
@@ -100,16 +107,3 @@ const startQuiz = () => {
 // const submitScore = () => {
 //   localStorage.setItem("userscore", `${initialsInput.value} : ${quiz.timer}`);
 // };
-
-// changeMainDisplay(homePageDiv, quizDiv);
-// let intervalId = setInterval(function () {
-//   if (!quiz.isOver) {
-//     changeTimerDisplay(quiz.timer);
-//     quiz.timer--;
-//   } else {
-//     console.log("Times up!");
-//     clearInterval(intervalId);
-//     intervalId = null;
-//     quiz.timer = 5;
-//   }
-// }, 1000);
