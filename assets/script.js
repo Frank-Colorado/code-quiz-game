@@ -51,6 +51,16 @@ class Quiz {
   constructor() {
     this.isOver = false;
     this.timer = 180;
+    this.questionCounter = 0;
+    this.currentQuestion;
+    this.randomQuestions = [];
+  }
+
+  setQuestions() {
+    quizQuestions.map((question, index) => {
+      this.randomQuestions.push(quizQuestions[index]);
+    });
+    console.log(this.randomQuestions);
   }
 }
 
@@ -59,18 +69,8 @@ const quiz = new Quiz();
 
 // function that starts quiz and countdown timer
 const startQuiz = () => {
-  changeMainDisplay(homePageDiv, quizDiv);
-  let intervalId = setInterval(function () {
-    if (!quiz.isOver) {
-      changeTimerDisplay(quiz.timer);
-      quiz.timer--;
-    } else {
-      console.log("Times up!");
-      clearInterval(intervalId);
-      intervalId = null;
-      quiz.timer = 5;
-    }
-  }, 1000);
+  quiz.setQuestions();
+  quiz.getQuestion();
 };
 
 // // End Quiz function
@@ -86,3 +86,16 @@ const startQuiz = () => {
 // const submitScore = () => {
 //   localStorage.setItem("userscore", `${initialsInput.value} : ${quiz.timer}`);
 // };
+
+// changeMainDisplay(homePageDiv, quizDiv);
+// let intervalId = setInterval(function () {
+//   if (!quiz.isOver) {
+//     changeTimerDisplay(quiz.timer);
+//     quiz.timer--;
+//   } else {
+//     console.log("Times up!");
+//     clearInterval(intervalId);
+//     intervalId = null;
+//     quiz.timer = 5;
+//   }
+// }, 1000);
