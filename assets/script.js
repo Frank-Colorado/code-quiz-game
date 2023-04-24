@@ -31,8 +31,18 @@ const clearBtn = document.getElementById("clearBtn");
 
 // Quiz Object
 const quiz = {
-  timer: 10,
+  timer: 5,
   quizOver: true,
+};
+
+// End Quiz function
+
+const endQuiz = () => {
+  quiz.timer = 5;
+  quiz.quizOver = true;
+  quizDiv.classList.add("d-none");
+  responseDisplay.innerText = "Quiz is over!";
+  finalScoreDiv.classList.remove("d-none");
 };
 
 //Countdown function
@@ -40,7 +50,7 @@ const countdown = () => {
   console.log(quiz.timer);
   if (quiz.timer === 0) {
     clearInterval(interval);
-    quiz.quizOver = true;
+    endQuiz();
     // call function that ends quiz
   } else {
     quiz.timer--;
