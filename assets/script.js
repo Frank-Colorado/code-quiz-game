@@ -29,14 +29,30 @@ const highScoresDiv = document.getElementById("highScores");
 const homeBtn = document.getElementById("homeBtn");
 const clearBtn = document.getElementById("clearBtn");
 
-// Quiz Properties Object
-const quizProperties = {
-  quizOver: True,
+// Quiz Object
+const quiz = {
+  timer: 10,
+  quizOver: true,
+};
+
+//Countdown function
+const countdown = () => {
+  console.log(quiz.timer);
+  if (quiz.timer === 0) {
+    clearInterval(interval);
+    quiz.quizOver = true;
+    // call function that ends quiz
+  } else {
+    quiz.timer--;
+    timerDisplay.innerText = `Time: ${quiz.timer}`;
+  }
 };
 
 // Start Quiz Function
 const startQuiz = () => {
+  quiz.quizOver = false;
   homePageDiv.classList.add("d-none");
   responseDisplay.innerText = "";
   quizDiv.classList.remove("d-none");
+  interval = setInterval(countdown, 1000);
 };
