@@ -7,7 +7,7 @@ const responseDisplay = document.getElementById("response");
 
 // DOM Home Page Section Variables
 const homePageDiv = document.getElementById("home");
-const start = document.getElementById("startBtn");
+const startBtn = document.getElementById("startBtn");
 
 // DOM Quiz Section Variables
 const quizDiv = document.getElementById("quiz");
@@ -37,6 +37,20 @@ class Quiz {
     this.timer = 5;
   }
 }
+
+// new quiz variable created using Quiz Class
+const quiz = new Quiz();
+
+// function that starts quiz and countdown timer
+const startQuiz = () => {
+  let intervalId = setInterval(function () {
+    if (!quiz.isOver) {
+      quiz.timer--;
+    } else {
+      clearInterval(intervalId);
+    }
+  }, 1000);
+};
 
 // // End Quiz function
 // const endQuiz = () => {

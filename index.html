@@ -17,7 +17,7 @@
     <!-- NAVBAR SECTION -->
     <header class="navbar">
       <h2>
-        <a id="viewResults"> View Test Results </a>
+        <a id="viewResults" onclick="quiz.end()"> View Test Results </a>
       </h2>
       <h2 id="timer">Time:</h2>
     </header>
@@ -61,11 +61,13 @@
 
       <!-- FINAL SCORE SECTION -->
       <div id="finalScore" class="container d-none">
-        <h2 id="userScore" class="userScoreTxt">Final Score : 25</h2>
+        <h2 id="userScore" class="userScoreTxt"></h2>
         <div class="inputContainer">
           <label for="initials">Enter Your Initials :</label>
           <input type="text" id="initials" class="input" value="" />
-          <button id="initialBtn" class="btn inputBtn">Submit</button>
+          <button id="initialBtn" onclick="submitScore()" class="btn inputBtn">
+            Submit
+          </button>
         </div>
       </div>
 
