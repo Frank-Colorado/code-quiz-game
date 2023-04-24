@@ -3,7 +3,7 @@ const timerDisplay = document.getElementById("timer");
 const resultsDisplay = document.getElementById("results");
 
 // DOM Main Section Variables
-const responseDisplay = document.getElementById("response");
+const mainHeaderDisplay = document.getElementById("mainHeader");
 
 // DOM Home Page Section Variables
 const homePageDiv = document.getElementById("home");
@@ -30,21 +30,26 @@ const scoreListDisplay = document.getElementById("scoreList");
 const homeBtn = document.getElementById("homeBtn");
 const clearBtn = document.getElementById("clearBtn");
 
-// function that changes the display of the Main Section
+const changeMainHeaderDisplay = (content) =>
+  (mainHeaderDisplay.innerHTML = content);
+
+// helper function that changes the display of the Main Section
 const changeMainDisplay = (hide, show) => {
   hide.classList.add("d-none");
   show.classList.remove("d-none");
+  changeMainHeaderDisplay("");
   return;
 };
 
+// helper function that changes the display of the Quiz Timer
 const changeTimerDisplay = (time) =>
-  (timerDisplay.innerText = `Time : ${time}`);
+  (timerDisplay.innerHTML = `Time : ${time}`);
 
 // Quiz Class
 class Quiz {
   constructor() {
     this.isOver = false;
-    this.timer = 5;
+    this.timer = 180;
   }
 }
 
