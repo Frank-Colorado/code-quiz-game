@@ -26,43 +26,50 @@ const initialsBtn = document.getElementById("initialBtn");
 
 // DOM High Scores Section Variables
 const highScoresDiv = document.getElementById("highScores");
+const scoreListDisplay = document.getElementById("scoreList");
 const homeBtn = document.getElementById("homeBtn");
 const clearBtn = document.getElementById("clearBtn");
 
-// Quiz Object
-const quiz = {
-  timer: 5,
-  quizOver: true,
-};
-
-// End Quiz function
-
-const endQuiz = () => {
-  quiz.timer = 5;
-  quiz.quizOver = true;
-  quizDiv.classList.add("d-none");
-  responseDisplay.innerText = "Quiz is over!";
-  finalScoreDiv.classList.remove("d-none");
-};
-
-//Countdown function
-const countdown = () => {
-  console.log(quiz.timer);
-  if (quiz.timer === 0) {
-    clearInterval(interval);
-    endQuiz();
-    // call function that ends quiz
-  } else {
-    quiz.timer--;
-    timerDisplay.innerText = `Time: ${quiz.timer}`;
+// Quiz Class
+class Quiz {
+  constructor() {
+    this.isOver = false;
+    this.timer = 5;
   }
-};
+}
 
-// Start Quiz Function
-const startQuiz = () => {
-  quiz.quizOver = false;
-  homePageDiv.classList.add("d-none");
-  responseDisplay.innerText = "";
-  quizDiv.classList.remove("d-none");
-  interval = setInterval(countdown, 1000);
-};
+// // End Quiz function
+// const endQuiz = () => {
+//   quizDiv.classList.add("d-none");
+//   responseDisplay.innerText = "Quiz is over!";
+//   finalScoreDiv.classList.remove("d-none");
+//   userScoreDisplay.innerText = `Final Score : ${quiz.timer}`;
+// };
+
+// //Countdown function
+// const countdown = () => {
+//   console.log(quiz.timer);
+//   if (quiz.timer === 0) {
+//     clearInterval(interval);
+//     endQuiz();
+//     // call function that ends quiz
+//   } else {
+//     quiz.timer--;
+//     timerDisplay.innerText = `Time: ${quiz.timer}`;
+//   }
+// };
+
+// // Start Quiz Function
+// const startQuiz = () => {
+//   quiz.quizOver = false;
+//   homePageDiv.classList.add("d-none");
+//   responseDisplay.innerText = "";
+//   quizDiv.classList.remove("d-none");
+//   interval = setInterval(countdown, 1000);
+// };
+
+// // Submit Score function
+// const highScores = JSON.parse(localStorage.getItem("highscores")) || [];
+// const submitScore = () => {
+//   localStorage.setItem("userscore", `${initialsInput.value} : ${quiz.timer}`);
+// };
