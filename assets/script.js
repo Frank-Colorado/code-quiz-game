@@ -30,6 +30,12 @@ const scoreListDisplay = document.getElementById("scoreList");
 const homeBtn = document.getElementById("homeBtn");
 const clearBtn = document.getElementById("clearBtn");
 
+const changeDisplay = (hide, show) => {
+  hide.classList.add("d-none");
+  show.classList.remove("d-none");
+  return;
+};
+
 // Quiz Class
 class Quiz {
   constructor() {
@@ -43,11 +49,15 @@ const quiz = new Quiz();
 
 // function that starts quiz and countdown timer
 const startQuiz = () => {
+  changeDisplay(homePageDiv, quizDiv);
   let intervalId = setInterval(function () {
     if (!quiz.isOver) {
       quiz.timer--;
+      console.log(quiz.timer);
     } else {
       clearInterval(intervalId);
+      intervalId = null;
+      quiz.timer = 5;
     }
   }, 1000);
 };
