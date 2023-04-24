@@ -85,6 +85,12 @@ class Quiz {
     this.currentQuestion = questionIndex;
     changeDisplay(questionDisplay, this.currentQuestion.q);
   }
+
+  nextQuestion() {
+    this.questionCounter === this.randomQuestions.length
+      ? console.log("quiz finished")
+      : this.getQuestion();
+  }
 }
 
 // new quiz variable created using Quiz Class
