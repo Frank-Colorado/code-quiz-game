@@ -98,10 +98,6 @@ class Quiz {
     }, 1000);
   }
 
-  // clearAnswerDisplay() {
-  //   answerContainer.innerHTML = "";
-  // }
-
   createAnswerDisplay(i) {
     const answerBtn = document.createElement("button");
     answerBtn.innerHTML = this.randomQuestion.answers[i];
