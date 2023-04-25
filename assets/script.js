@@ -73,6 +73,14 @@ class Quiz {
     }, 1000);
   }
 
+  createOptionDisplay(i) {
+    const optionBtn = document.createElement("button");
+    optionBtn.innerHTML = this.currentQuestion.options[i];
+    optionBtn.id = [i];
+    optionBtn.className = "answerBtn";
+    optionContainer.appendChild(optionBtn);
+  }
+
   getOptions(array) {
     console.log(array.length);
     array.map((option, index) => {
