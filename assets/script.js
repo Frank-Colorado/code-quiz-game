@@ -44,7 +44,7 @@ const changeDisplay = (display, content) => (display.innerHTML = content);
 class Quiz {
   constructor() {
     this.isOver = false;
-    this.timer = 10;
+    this.timer = 180;
     this.questionCounter = 0;
     this.currentQuestion;
     this.randomQuestions = [];
@@ -76,22 +76,27 @@ class Quiz {
     });
   }
 
-  getQuestion() {
+  questionCount() {
     const counter = `Question ${(this.questionCounter += 1)} of ${
-      this.randomQuestions.length
+      quizQuestions.length
     }`;
     changeDisplay(mainHeaderDisplay, counter);
+  }
 
+  getQuestion() {
+    this.questionCount();
     const questionIndex =
       this.randomQuestions[
         Math.floor(Math.random() * this.randomQuestions.length)
       ];
     this.currentQuestion = questionIndex;
     changeDisplay(questionDisplay, this.currentQuestion.q);
+    const index1 = this.randomQuestions.indexOf(questionIndex);
+    this.randomQuestions.splice(index1, 1);
   }
 
   nextQuestion() {
-    this.questionCounter === this.randomQuestions.length
+    this.questionCounter === quizQuestions.length
       ? this.endQuiz(this.timer + 1)
       : this.getQuestion();
   }
