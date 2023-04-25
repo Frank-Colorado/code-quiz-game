@@ -49,6 +49,7 @@ class Quiz {
     this.questionCounter = 0;
     this.currentQuestion;
     this.randomQuestions = [];
+    this.currentOption;
     this.randomOptions = [];
   }
 
@@ -72,10 +73,27 @@ class Quiz {
     }, 1000);
   }
 
-  setChoices(array) {
+  getOptions(array) {
+    console.log(array.length);
+    array.map((option, index) => {
+      option = array[Math.floor(Math.random() * array.length)];
+
+      console.log(option);
+      const index2 = index;
+      console.log(index2);
+
+      array.splice(index2, 1);
+      console.log(array);
+      createDisplay(option);
+    });
+  }
+
+  setOptions(array) {
     array.map((option, index) => {
       this.randomOptions.push(index);
     });
+    console.log(this.randomOptions);
+    this.getOptions(this.randomOptions);
   }
 
   questionCountDisplay() {
@@ -87,22 +105,26 @@ class Quiz {
 
   getQuestion() {
     this.questionCountDisplay();
-    const questionIndex =
+    //
+    this.currentQuestion =
       this.randomQuestions[
         Math.floor(Math.random() * this.randomQuestions.length)
       ];
-    this.currentQuestion = questionIndex;
+    //
     changeDisplay(questionDisplay, this.currentQuestion.q);
-    const index1 = this.randomQuestions.indexOf(questionIndex);
+    //
+    const index1 = this.randomQuestions.indexOf(this.currentQuestion);
+    //
     this.randomQuestions.splice(index1, 1);
     console.log(this.currentQuestion.options);
-    this.setChoices(this.currentQuestion.options);
+    this.setOptions(this.currentQuestion.options);
   }
 
   setQuestions() {
-    quizQuestions.map((question, index) => {
-      this.randomQuestions.push(quizQuestions[index]);
+    quizQuestions.map((question) => {
+      this.randomQuestions.push(question);
     });
+    console.log(this.randomQuestions);
     this.getQuestion();
   }
 
