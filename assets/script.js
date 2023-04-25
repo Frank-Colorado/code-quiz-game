@@ -129,16 +129,15 @@ class Quiz {
     this.getAnswers(array);
   }
 
-  questionCountDisplay() {
+  // This is a method called 'getQuestion'
+  // It has 0 parameters
+  // This method will be called by the 'setQuestions' method or the 'nextQuestion' method
+  getQuestion() {
     const counter = `Question ${(this.questionCounter += 1)} of ${
       quizQuestions.length
     }`;
     changeDisplay(mainHeaderDisplay, counter);
-  }
 
-  getQuestion() {
-    this.questionCountDisplay();
-    //
     this.randomQuestion =
       this.questionsArray[
         Math.floor(Math.random() * this.questionsArray.length)
@@ -159,9 +158,10 @@ class Quiz {
   // This method will be called by the 'startQuiz' function
   setQuestions() {
     // The map method will be used on the array 'quizQuestions'
-    // Every item in the 'quizQuestions' array will be added to the 'randomQuestions' array
-    // This is identical array is created so that the contents can be 'randomized' and changed for each new quiz without changing the original array
+    // Every item in the 'quizQuestions' array will be added to the 'questionsArray' array
+    // This identical array is created so that the contents can be 'randomized' and changed for each new quiz without changing the original array
     this.questionsArray = quizQuestions.map((question) => question);
+    // The 'getQuestion' method is called
     this.getQuestion();
   }
 
