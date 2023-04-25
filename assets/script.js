@@ -34,7 +34,6 @@ const clearBtn = document.getElementById("clearBtn");
 const changeMainDisplay = (hide, show) => {
   hide.classList.add("d-none");
   show.classList.remove("d-none");
-  changeDisplay(mainHeaderDisplay, "");
   return;
 };
 
@@ -51,16 +50,22 @@ class Quiz {
     this.randomQuestions = [];
   }
 
+  endQuiz(score) {
+    this.isOver = true;
+    changeDisplay(mainHeaderDisplay, "Quiz is finished!");
+    changeDisplay(userScoreDisplay, score);
+    changeMainDisplay(quizDiv, finalScoreDiv);
+  }
+
   countdown() {
     let intervalId = setInterval(function () {
-      if (quiz.timer >= 0) {
+      if (quiz.timer >= 0 && !quiz.isOver) {
         changeDisplay(timerDisplay, quiz.timer);
         quiz.timer--;
       } else {
-        console.log("Times up!");
         clearInterval(intervalId);
         intervalId = null;
-        quiz.timer = 10;
+        quiz.endQuiz(quiz.timer + 1);
       }
     }, 1000);
   }
@@ -69,7 +74,6 @@ class Quiz {
     quizQuestions.map((question, index) => {
       this.randomQuestions.push(quizQuestions[index]);
     });
-    console.log(this.randomQuestions);
   }
 
   getQuestion() {
@@ -88,7 +92,7 @@ class Quiz {
 
   nextQuestion() {
     this.questionCounter === this.randomQuestions.length
-      ? console.log("quiz finished")
+      ? this.endQuiz(this.timer + 1)
       : this.getQuestion();
   }
 }
@@ -99,6 +103,7 @@ const quiz = new Quiz();
 // function that starts quiz and countdown timer
 const startQuiz = () => {
   changeMainDisplay(homePageDiv, quizDiv);
+  changeDisplay(mainHeaderDisplay, "");
   quiz.countdown();
   quiz.setQuestions();
   quiz.getQuestion();
