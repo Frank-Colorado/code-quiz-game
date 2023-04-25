@@ -12,6 +12,7 @@ const startBtn = document.getElementById("startBtn");
 // DOM Quiz Section Variables
 const quizDiv = document.getElementById("quiz");
 const questionDisplay = document.getElementById("question");
+const optionContainer = document.getElementById("answersContainer");
 const allanswers = document.querySelectorAll(".answerBtn");
 const answer1 = document.getElementById("answerBtn1");
 const answer2 = document.getElementById("answerBtn2");
@@ -48,6 +49,7 @@ class Quiz {
     this.questionCounter = 0;
     this.currentQuestion;
     this.randomQuestions = [];
+    this.randomOptions = [];
   }
 
   endQuiz(score) {
@@ -70,13 +72,13 @@ class Quiz {
     }, 1000);
   }
 
-  setQuestions() {
-    quizQuestions.map((question, index) => {
-      this.randomQuestions.push(quizQuestions[index]);
+  setChoices(array) {
+    array.map((option, index) => {
+      this.randomOptions.push(index);
     });
   }
 
-  questionCount() {
+  questionCountDisplay() {
     const counter = `Question ${(this.questionCounter += 1)} of ${
       quizQuestions.length
     }`;
@@ -84,7 +86,7 @@ class Quiz {
   }
 
   getQuestion() {
-    this.questionCount();
+    this.questionCountDisplay();
     const questionIndex =
       this.randomQuestions[
         Math.floor(Math.random() * this.randomQuestions.length)
@@ -93,6 +95,15 @@ class Quiz {
     changeDisplay(questionDisplay, this.currentQuestion.q);
     const index1 = this.randomQuestions.indexOf(questionIndex);
     this.randomQuestions.splice(index1, 1);
+    console.log(this.currentQuestion.options);
+    this.setChoices(this.currentQuestion.options);
+  }
+
+  setQuestions() {
+    quizQuestions.map((question, index) => {
+      this.randomQuestions.push(quizQuestions[index]);
+    });
+    this.getQuestion();
   }
 
   nextQuestion() {
@@ -111,7 +122,6 @@ const startQuiz = () => {
   changeDisplay(mainHeaderDisplay, "");
   quiz.countdown();
   quiz.setQuestions();
-  quiz.getQuestion();
 };
 
 // // End Quiz function
