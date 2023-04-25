@@ -12,7 +12,7 @@ const startBtn = document.getElementById("startBtn");
 // DOM Quiz Section Variables
 const quizDiv = document.getElementById("quiz");
 const questionDisplay = document.getElementById("question");
-const optionContainer = document.getElementById("answersContainer");
+const answerContainer = document.getElementById("answersContainer");
 const allanswers = document.querySelectorAll(".answerBtn");
 const answer1 = document.getElementById("answerBtn1");
 const answer2 = document.getElementById("answerBtn2");
@@ -53,10 +53,10 @@ class Quiz {
     this.isOver = false;
     this.timer = 180;
     this.questionCounter = 0;
-    this.currentQuestion;
-    this.randomQuestions = [];
-    this.currentOption;
-    this.randomOptions = [];
+    this.questionsArray;
+    this.randomQuestion;
+    this.answersArray;
+    this.randomAnswer;
   }
 
   // This is a method called 'endQuiz'
@@ -98,43 +98,39 @@ class Quiz {
     }, 1000);
   }
 
-  clearOptionDisplay() {
-    optionContainer.innerHTML = "";
+  // clearAnswerDisplay() {
+  //   answerContainer.innerHTML = "";
+  // }
+
+  createAnswerDisplay(i) {
+    const answerBtn = document.createElement("button");
+    answerBtn.innerHTML = this.randomQuestion.answers[i];
+    answerBtn.id = [i];
+    answerBtn.className = "answerBtn";
+    answerContainer.appendChild(answerBtn);
   }
 
-  createOptionDisplay(i) {
-    const optionBtn = document.createElement("button");
-    optionBtn.innerHTML = this.currentQuestion.answers[i];
-    optionBtn.id = [i];
-    optionBtn.className = "answerBtn";
-    optionContainer.appendChild(optionBtn);
-  }
-
-  getOptions(array) {
-    this.clearOptionDisplay();
+  getAnswers(array) {
+    changeDisplay(answerContainer, "");
     console.log(array);
     array.map((option, index) => {
-      this.currentOption =
-        this.randomOptions[
-          Math.floor(Math.random() * this.randomOptions.length)
-        ];
+      this.randomAnswer =
+        this.answersArray[Math.floor(Math.random() * this.answersArray.length)];
 
-      console.log(this.currentOption);
-      const index2 = this.randomOptions.indexOf(this.currentOption);
+      console.log(this.randomAnswer);
+      const index2 = this.answersArray.indexOf(this.randomAnswer);
       console.log(index2);
 
-      this.randomOptions.splice(index2, 1);
+      this.answersArray.splice(index2, 1);
 
-      this.createOptionDisplay(this.currentOption);
+      this.createAnswerDisplay(this.randomAnswer);
     });
   }
 
-  setOptions(array) {
-    array.map((option, index) => {
-      this.randomOptions.push(index);
-    });
-    console.log(this.randomOptions);
-    this.getOptions(array);
+  setAnswers(array) {
+    this.answersArray = array.map((option, index) => index);
+    console.log(this.answersArray);
+    this.getAnswers(array);
   }
 
   questionCountDisplay() {
@@ -147,19 +143,19 @@ class Quiz {
   getQuestion() {
     this.questionCountDisplay();
     //
-    this.currentQuestion =
-      this.randomQuestions[
-        Math.floor(Math.random() * this.randomQuestions.length)
+    this.randomQuestion =
+      this.questionsArray[
+        Math.floor(Math.random() * this.questionsArray.length)
       ];
     //
-    changeDisplay(questionDisplay, this.currentQuestion.q);
+    changeDisplay(questionDisplay, this.randomQuestion.q);
     //
-    const index1 = this.randomQuestions.indexOf(this.currentQuestion);
+    const index1 = this.questionsArray.indexOf(this.randomQuestion);
     //
-    this.randomQuestions.splice(index1, 1);
+    this.questionsArray.splice(index1, 1);
 
-    console.log(this.currentQuestion.answers);
-    this.setOptions(this.currentQuestion.answers);
+    console.log(this.randomQuestion.answers);
+    this.setAnswers(this.randomQuestion.answers);
   }
 
   // This is a method called 'setQuestions'
@@ -169,8 +165,8 @@ class Quiz {
     // The map method will be used on the array 'quizQuestions'
     // Every item in the 'quizQuestions' array will be added to the 'randomQuestions' array
     // This is identical array is created so that the contents can be 'randomized' and changed for each new quiz without changing the original array
-    this.randomQuestions = quizQuestions.map((question) => question);
-    //this.getQuestion();
+    this.questionsArray = quizQuestions.map((question) => question);
+    this.getQuestion();
   }
 
   // This is a method called 'nextQuestion'
