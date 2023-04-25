@@ -73,26 +73,34 @@ class Quiz {
     }, 1000);
   }
 
+  clearOptionDisplay() {
+    optionContainer.innerHTML = "";
+  }
+
   createOptionDisplay(i) {
     const optionBtn = document.createElement("button");
-    optionBtn.innerHTML = this.currentQuestion.options[i];
+    optionBtn.innerHTML = this.currentQuestion.answers[i];
     optionBtn.id = [i];
     optionBtn.className = "answerBtn";
     optionContainer.appendChild(optionBtn);
   }
 
   getOptions(array) {
-    console.log(array.length);
+    this.clearOptionDisplay();
+    console.log(array);
     array.map((option, index) => {
-      option = array[Math.floor(Math.random() * array.length)];
+      this.currentOption =
+        this.randomOptions[
+          Math.floor(Math.random() * this.randomOptions.length)
+        ];
 
-      console.log(option);
-      const index2 = index;
+      console.log(this.currentOption);
+      const index2 = this.randomOptions.indexOf(this.currentOption);
       console.log(index2);
 
-      array.splice(index2, 1);
-      console.log(array);
-      createDisplay(option);
+      this.randomOptions.splice(index2, 1);
+
+      this.createOptionDisplay(this.currentOption);
     });
   }
 
@@ -101,7 +109,7 @@ class Quiz {
       this.randomOptions.push(index);
     });
     console.log(this.randomOptions);
-    this.getOptions(this.randomOptions);
+    this.getOptions(array);
   }
 
   questionCountDisplay() {
@@ -124,8 +132,9 @@ class Quiz {
     const index1 = this.randomQuestions.indexOf(this.currentQuestion);
     //
     this.randomQuestions.splice(index1, 1);
-    console.log(this.currentQuestion.options);
-    this.setOptions(this.currentQuestion.options);
+
+    console.log(this.currentQuestion.answers);
+    this.setOptions(this.currentQuestion.answers);
   }
 
   setQuestions() {
