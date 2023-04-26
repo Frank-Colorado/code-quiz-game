@@ -15,16 +15,6 @@ const quizQuestions = [
     rightAnswer: 3,
   },
   {
-    q: "Which HTML element is used to link the JavaScript file?",
-    answers: [
-      "<script></script>",
-      "<javascript></javascript>",
-      "<js></js>",
-      "<scripting></scripting>",
-    ],
-    rightAnswer: 0,
-  },
-  {
     q: "The condition in an if / else statement is enclosed with ____",
     answers: ["Quotes", "Curly Brackets", "Parenthesis", "Square Brackets"],
     rightAnswer: 2,
