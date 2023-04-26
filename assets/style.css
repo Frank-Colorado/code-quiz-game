@@ -37,6 +37,7 @@ ol {
 li {
   padding: 5px 0px;
 }
+
 .d-none {
   display: none;
 }
@@ -114,6 +115,41 @@ li {
   border: 1px solid #222;
   border-radius: 10px;
   text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.answerBtn.correct::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 40%;
+  background-color: green;
+  animation: slideInLeft 0.5s ease forwards;
+}
+
+.answerBtn.wrong::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 40%;
+  background-color: #d22b2b;
+  animation: slideInLeft 0.5s ease forwards;
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
 
 /* FINAL SCORE STYLING */
