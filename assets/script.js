@@ -13,7 +13,7 @@ const startBtn = document.getElementById("startBtn");
 const quizDiv = document.getElementById("quiz");
 const questionDisplay = document.getElementById("question");
 const answerContainer = document.getElementById("answersContainer");
-
+const nextBtn = document.getElementById("nextBtn");
 const answer1 = document.getElementById("answerBtn1");
 const answer2 = document.getElementById("answerBtn2");
 const answer3 = document.getElementById("answerBtn3");
@@ -67,6 +67,7 @@ class Quiz {
     // The state of the quiz is changed to finished by setting the key 'isOver' to a value of true
     this.isOver = true;
     // The helper functions that change DOM displays are then called and passed which DOM elements with what content each should be changed to
+    changeDisplay(timerDisplay, "");
     changeDisplay(mainHeaderDisplay, "Quiz is finished!");
     changeDisplay(userScoreDisplay, score);
     changeMainDisplay(quizDiv, finalScoreDiv);
@@ -88,15 +89,33 @@ class Quiz {
         quiz.timer--;
         // Otherwise / If either are Falsy
       } else {
+        quiz.timer = 0;
         // Then the method 'clearInterval' is called and passed the intervalId variable
         // This stops the 'setInterval' function from running
         clearInterval(intervalId);
         // The value of the 'intervalId' is reset to null
         intervalId = null;
+
         // Then the method 'endQuiz' is called and is passed the current value of the 'timer' + 1
         quiz.endQuiz(quiz.timer + 1);
       }
     }, 1000);
+  }
+
+  // This is a method called 'checkAnswer'
+  // It has 2 parameters called 'button' and 'answerId'
+  // This method will be called by the 'getAnswerId' method
+  checkAnswer(button, answerId) {
+    // An if/else is used to create a conditional statement
+    // If the Id of the button clicked is the same as the value of 'randomQuestion.rightAnswer' / Truthy
+    if (this.randomQuestion.rightAnswer == answerId) {
+      // Then the class 'correct' will be added to the button
+      button.classList.add("correct");
+    } else {
+      // Otherwise, the class 'wrong' will be added to the button / Falsy
+      button.classList.add("wrong");
+      this.timer -= 10;
+    }
   }
 
   // This is a method called 'getAnswerId'
@@ -109,9 +128,9 @@ class Quiz {
     console.log(answerBtns);
     // The 'forEach' method will then be used on all the buttons in 'answerBtns'
     // Each button will have the 'click' event listener added to it
-    // On click, the buttons id value will be passed to the 'checkAnswer' method
+    // On click, the button element and its id value will be passed to the 'checkAnswer' method
     answerBtns.forEach((btn) => {
-      btn.onclick = () => this.checkAnswer(btn.id);
+      btn.onclick = () => this.checkAnswer(btn, btn.id);
     });
   }
 
@@ -140,6 +159,7 @@ class Quiz {
   getAnswers(array) {
     // The current contents of the 'answerContainer' is set to an empty string using the 'changeDisplay' helper function
     changeDisplay(answerContainer, "");
+    nextBtn.classList.add("d-none");
     // The 'forEach' method will then be used on the array it was given
     // For every item in the array it was given this method will -
     array.forEach((item) => {
