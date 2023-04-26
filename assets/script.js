@@ -43,6 +43,14 @@ const changeMainDisplay = (hide, show) => {
 // It will change the inner HTML of the given display to the given content
 const changeDisplay = (display, content) => (display.innerHTML = content);
 
+// User Class
+class User {
+  constructor(name, score) {
+    this.name = name;
+    this.score = score;
+  }
+}
+
 // Quiz Class
 class Quiz {
   // The Constructor method is used to create and object with keys and values for any variable created using the Quiz Class
