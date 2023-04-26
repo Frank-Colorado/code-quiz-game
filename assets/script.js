@@ -14,10 +14,6 @@ const quizDiv = document.getElementById("quiz");
 const questionDisplay = document.getElementById("question");
 const answerContainer = document.getElementById("answersContainer");
 const nextBtn = document.getElementById("nextBtn");
-const answer1 = document.getElementById("answerBtn1");
-const answer2 = document.getElementById("answerBtn2");
-const answer3 = document.getElementById("answerBtn3");
-const answer4 = document.getElementById("answerBtn4");
 
 // DOM Final Score Section Variables
 const finalScoreDiv = document.getElementById("finalScore");
