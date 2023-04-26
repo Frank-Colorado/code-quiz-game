@@ -18,8 +18,8 @@ const nextBtn = document.getElementById("nextBtn");
 // DOM Final Score Section Variables
 const finalScoreDiv = document.getElementById("finalScore");
 const userScoreDisplay = document.getElementById("userScore");
-const initialsInput = document.getElementById("initials");
-const initialsBtn = document.getElementById("initialBtn");
+const userNameInput = document.getElementById("userName");
+const submitBtn = document.getElementById("submitBtn");
 
 // DOM High Scores Section Variables
 const highScoresDiv = document.getElementById("highScores");
@@ -278,8 +278,8 @@ class User {
   }
 }
 
-// This function listens for any 'keydown' event on the 'initialsInput' field
-initialsInput.addEventListener("keydown", function (e) {
+// This function listens for any 'keydown' event on the 'userNameInput' field
+userNameInput.addEventListener("keydown", function (e) {
   if (
     // If the key pressed is the ctrl/alt key then nothing happens
     e.ctrlKey ||
