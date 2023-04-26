@@ -102,6 +102,22 @@ class Quiz {
     }, 1000);
   }
 
+  // This is a method called 'unclickable'
+  // It has 0 parameters
+  // This method will be called by the 'checkAnswer' method
+  unclickable() {
+    // The 'Array.from' method is used to convert the array-like 'answerContainer.children' object to an array
+    // This array is stored in the variable 'answers'
+    const answers = Array.from(answerContainer.children);
+    // answers is now an array so the '.forEach' method can be called on it
+    answers.forEach((answer) => {
+      // for every answer, the class 'no-click' is added which makes the user unable to choose other options after already choosing an answer
+      answer.classList.add("no-click");
+    });
+    // the 'nextBtn' is then revealed to the user
+    nextBtn.classList.remove("d-none");
+  }
+
   // This is a method called 'checkAnswer'
   // It has 2 parameters called 'button' and 'answerId'
   // This method will be called by the 'getAnswerId' method
@@ -116,6 +132,7 @@ class Quiz {
       button.classList.add("wrong");
       this.timer -= 10;
     }
+    this.unclickable();
   }
 
   // This is a method called 'getAnswerId'

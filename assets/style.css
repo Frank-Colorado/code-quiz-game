@@ -143,6 +143,10 @@ li {
   animation: slideInLeft 0.5s ease forwards;
 }
 
+.no-click {
+  pointer-events: none;
+}
+
 @keyframes slideInLeft {
   0% {
     transform: translateX(-50%);
