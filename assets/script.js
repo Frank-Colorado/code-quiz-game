@@ -301,6 +301,17 @@ userNameInput.addEventListener("keydown", function (e) {
   }
 });
 
+// This is a function called 'SubmitScore'
+// It has 0 parameters
+// It is called when the 'submitBtn' is clicked
+const submitScore = () => {
+  // A new user obj is created using the Class constructor 'User'
+  // The constructor is given the value of the input field which will be set as the user's name
+  // The remaining time left will be set as the user's score
+  // The variable 'user' is created and holds the value of this new 'User'
+  const user = new User(userNameInput.value, quiz.timer);
+};
+
 // This is a function called 'startQuiz'
 // It has 0 parameters
 // It is called when the 'startBtn' is clicked
@@ -314,9 +325,3 @@ const startQuiz = () => {
   // The 'setQuestions' method is called on the 'quiz' variable which creates/displays a new random set of questions/answers for the quiz
   quiz.setQuestions();
 };
-
-// // Submit Score function
-// const highScores = JSON.parse(localStorage.getItem("highscores")) || [];
-// const submitScore = () => {
-//   localStorage.setItem("userscore", `${initialsInput.value} : ${quiz.timer}`);
-// };
