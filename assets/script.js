@@ -49,6 +49,7 @@ const changeDisplay = (display, content) => (display.innerHTML = content);
 
 // Quiz Class
 class Quiz {
+  // The Constructor method is used to create and object with keys and values for any variable created using the Quiz Class
   constructor() {
     this.isOver = false;
     this.timer = 180;
@@ -98,34 +99,59 @@ class Quiz {
     }, 1000);
   }
 
-  createAnswerDisplay(i) {
+  // This is a method called 'createAnswerDisplay'
+  // It has 1 parameter called 'index'
+  // This method will be called by the 'getAnswers' method
+  createAnswerDisplay(index) {
+    // The variable 'answerBtn' is created
+    // Its value is a newly created <button> element
     const answerBtn = document.createElement("button");
-    answerBtn.innerHTML = this.randomQuestion.answers[i];
-    answerBtn.id = [i];
+    // The inner HTML of the button is set to a random answer of the current question using the index given on 'randomQuestion.answers'
+    answerBtn.innerHTML = this.randomQuestion.answers[index];
+    // The id of the button is then set to the index given.
+    // This id will be how we correctly identify the correct answer
+    // The value for the key 'rightAnswer' will match this ID if it is the correct answer
+    answerBtn.id = [index];
+    // The class of the button is then set to 'answerBtn' for styling
     answerBtn.className = "answerBtn";
+    // The class is then added to the 'answerContainer'
     answerContainer.appendChild(answerBtn);
   }
 
+  // This is a method called 'getAnswers'
+  // It has 1 parameter called 'array'
+  // This method will be called by the 'setAnswers' method
   getAnswers(array) {
+    // The current contents of the 'answerContainer' is set to an empty string using the 'changeDisplay' helper function
     changeDisplay(answerContainer, "");
-    console.log(array);
-    array.map((option, index) => {
+    // The 'forEach' method will then be used on the array it was given
+    // For every item in the array it was given this method will -
+    array.forEach((item) => {
+      // A random answer is chosen from the 'answersArray' and stored within 'randomAnswer'
       this.randomAnswer =
         this.answersArray[Math.floor(Math.random() * this.answersArray.length)];
 
-      console.log(this.randomAnswer);
-      const index2 = this.answersArray.indexOf(this.randomAnswer);
-      console.log(index2);
+      // The variable 'answerIndex' is created
+      // Its value is the current index of 'randomAnswer' in the 'answersArray'
+      const answerIndex = this.answersArray.indexOf(this.randomAnswer);
 
-      this.answersArray.splice(index2, 1);
+      // That answer is then removed from the 'answersArray' so that it can't be repeated
+      this.answersArray.splice(answerIndex, 1);
 
+      // The 'createAnswerDisplay' method is called and passes the 'randomAnswer' that was created
       this.createAnswerDisplay(this.randomAnswer);
     });
   }
 
+  // This is a method called 'setAnswers'
+  // It has 1 parameter called 'array'
+  // This method will be called by the 'getQuestion' method
   setAnswers(array) {
+    // The map method will be used on the array its given
+    // The index of every item in the array will be added to the 'answersArray' array
+    // This array of index's is created so that the  will be able to be identified after the array is 'randomized'/changed for each new question without changing the original array
     this.answersArray = array.map((option, index) => index);
-    console.log(this.answersArray);
+    // The 'getAnswers' method is called and is passed the array that was just mapped through
     this.getAnswers(array);
   }
 
@@ -133,23 +159,28 @@ class Quiz {
   // It has 0 parameters
   // This method will be called by the 'setQuestions' method or the 'nextQuestion' method
   getQuestion() {
+    // The variable 'counter' is created
+    // Its value is a dynamic string which will change depending on which question the user is on
     const counter = `Question ${(this.questionCounter += 1)} of ${
       quizQuestions.length
     }`;
+    // 'counter' is passed to the 'changeDisplay' helper function
     changeDisplay(mainHeaderDisplay, counter);
 
+    // A random question is chosen from the 'questionsArray' and stored within 'randomQuestion'
     this.randomQuestion =
       this.questionsArray[
         Math.floor(Math.random() * this.questionsArray.length)
       ];
-    //
+    // The 'q' key from 'randomQuestion' which holds the question's text is passed to the 'changeDisplay' helper function
     changeDisplay(questionDisplay, this.randomQuestion.q);
-    //
-    const index1 = this.questionsArray.indexOf(this.randomQuestion);
-    //
-    this.questionsArray.splice(index1, 1);
+    // The variable 'questionIndex' is created
+    // Its value is the current index of 'randomQuestion' in the 'questionsArray'
+    const questionIndex = this.questionsArray.indexOf(this.randomQuestion);
+    // That question is then removed from the 'questionsArray' so that it can't be repeated during the quiz
+    this.questionsArray.splice(questionIndex, 1);
 
-    console.log(this.randomQuestion.answers);
+    // The 'answers' key from 'randomQuestion' which holds all the answer choices for the current question is passed to the 'setAnswers' method
     this.setAnswers(this.randomQuestion.answers);
   }
 
