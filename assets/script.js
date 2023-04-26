@@ -68,7 +68,6 @@ class Quiz {
   // It has 1 parameter called 'score'
   // This method will be called when there is no more time left in the quiz or there are no more questions in the quiz
   endQuiz(score) {
-    // The state of the quiz is changed to finished by setting the key 'isOver' to a value of true
     this.isOver = true;
     // The helper functions that change DOM displays are then called and passed which DOM elements with what content each should be changed to
     changeDisplay(timerDisplay, "");
@@ -93,15 +92,12 @@ class Quiz {
         quiz.timer--;
         // Otherwise / If either are Falsy
       } else {
-        quiz.timer = 0;
+        quiz.timer < 0 ? quiz.endQuiz(0) : quiz.endQuiz(quiz.timer);
         // Then the method 'clearInterval' is called and passed the intervalId variable
         // This stops the 'setInterval' function from running
         clearInterval(intervalId);
         // The value of the 'intervalId' is reset to null
         intervalId = null;
-
-        // Then the method 'endQuiz' is called and is passed the current value of the 'timer' + 1
-        quiz.endQuiz(quiz.timer + 1);
       }
     }, 1000);
   }
