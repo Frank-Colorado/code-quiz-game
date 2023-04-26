@@ -10,7 +10,7 @@ const quizQuestions = [
       "Numbers and Strings",
       "Other Arrays",
       "Booleans",
-      "All of the Above",
+      "All of These Answers",
     ],
     rightAnswer: 3,
   },
