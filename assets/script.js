@@ -278,24 +278,28 @@ class User {
   }
 }
 
-initialsInput.addEventListener(
-  "keydown",
-  function (e) {
-    if (
-      e.ctrlKey ||
-      e.altKey ||
-      typeof e.key !== "string" ||
-      e.key.length !== 1
-    ) {
-      return;
-    }
-    if (!re.test(e.key)) {
-      console.log("not allowed");
-      e.preventDefault();
-    }
-  },
-  false
-);
+// This function listens for any 'keydown' event on the 'initialsInput' field
+initialsInput.addEventListener("keydown", function (e) {
+  if (
+    // If the key pressed is the ctrl/alt key then nothing happens
+    e.ctrlKey ||
+    e.altKey ||
+    // Only 'string' values are excepted, otherwise nothing happens
+    typeof e.key !== "string" ||
+    // If the key is longer than one character then nothing happens. This is for keys such as Enter
+    e.key.length !== 1
+  ) {
+    return;
+  }
+  // Our key is then checked using the '.test' method for RegExp
+  // Our variable 're' will only match with single word characters - alphanumerics
+  if (!re.test(e.key)) {
+    // If the key pressed does not match
+    // Then Default function of the input field will not be allowed.
+    // This means special characters and white space won't be accepted
+    e.preventDefault();
+  }
+});
 
 // This is a function called 'startQuiz'
 // It has 0 parameters
