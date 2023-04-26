@@ -92,12 +92,18 @@ class Quiz {
         quiz.timer--;
         // Otherwise / If either are Falsy
       } else {
-        quiz.timer < 0 ? quiz.endQuiz(0) : quiz.endQuiz(quiz.timer);
         // Then the method 'clearInterval' is called and passed the intervalId variable
         // This stops the 'setInterval' function from running
         clearInterval(intervalId);
         // The value of the 'intervalId' is reset to null
         intervalId = null;
+        // A Ternary Operator is used to create a conditional statement
+        // If the current time left is less than 0 / Truthy
+        // then the 'endQuiz' method is called and passed the value 0
+        // Otherwise, the 'endQuiz' method is called and passed the value of 'quiz.timer'
+        quiz.timer < 0 ? quiz.endQuiz(0) : quiz.endQuiz(quiz.timer);
+        // If the user selected a wrong answer and 10 was decremented from the timer when the time left was <10
+        // A negtive value and score would be displayed so this conditional was created to fix this 'bug'cd
       }
     }, 1000);
   }
