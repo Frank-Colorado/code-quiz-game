@@ -43,14 +43,6 @@ const changeMainDisplay = (hide, show) => {
 // It will change the inner HTML of the given display to the given content
 const changeDisplay = (display, content) => (display.innerHTML = content);
 
-// User Class
-class User {
-  constructor(name, score) {
-    this.name = name;
-    this.score = score;
-  }
-}
-
 // Quiz Class
 class Quiz {
   // The Constructor method is used to create and object with keys and values for any variable created using the Quiz Class
@@ -92,11 +84,11 @@ class Quiz {
         quiz.timer--;
         // Otherwise / If either are Falsy
       } else {
+        // The value of the 'intervalId' is reset to null
+        intervalId = null;
         // Then the method 'clearInterval' is called and passed the intervalId variable
         // This stops the 'setInterval' function from running
         clearInterval(intervalId);
-        // The value of the 'intervalId' is reset to null
-        intervalId = null;
         // A Ternary Operator is used to create a conditional statement
         // If the current time left is less than 0 / Truthy
         // then the 'endQuiz' method is called and passed the value 0
@@ -148,7 +140,6 @@ class Quiz {
     // The variable answerBtns is created
     // Its value will be all html elements with the class 'answerBtn'
     const answerBtns = document.querySelectorAll(".answerBtn");
-    console.log(answerBtns);
     // The 'forEach' method will then be used on all the buttons in 'answerBtns'
     // Each button will have the 'click' event listener added to it
     // On click, the button element and its id value will be passed to the 'checkAnswer' method
@@ -200,7 +191,6 @@ class Quiz {
       // The 'createAnswerDisplay' method is called and passes the 'randomAnswer' that was created
       this.createAnswerDisplay(this.randomAnswer);
     });
-    console.log("sending to check answer method");
     // After all the items have been looped through, the 'getAnswerId' method will then be called
     this.getAnswerId();
   }
@@ -266,7 +256,7 @@ class Quiz {
     // If the user has gone through all the questions in the quiz / Truthy
     this.questionCounter === quizQuestions.length
       ? // Then the method 'endQuiz' is called and is passed the current value of the 'timer' + 1
-        this.endQuiz(this.timer + 1)
+        this.endQuiz(this.timer)
       : // Otherwise / Falsy
         // The 'getQuestion' method is called which will display the next question/answer to the DOM
         this.getQuestion();
@@ -276,6 +266,20 @@ class Quiz {
 // new 'quiz' variable created using Quiz Class
 // This variable is created so that the methods of the Quiz Class can be called and Properties for the Quiz Class can be accessed
 const quiz = new Quiz();
+
+// User Class
+class User {
+  constructor(name, score) {
+    this.name = name;
+    this.score = score;
+  }
+}
+
+const submitScore = () => {
+  console.log(quiz.timer);
+  const user = new User(initialsInput.value, quiz.timer);
+  console.log(user);
+};
 
 // This is a function called 'startQuiz'
 // It has 0 parameters
