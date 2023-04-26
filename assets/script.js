@@ -27,6 +27,9 @@ const scoreListDisplay = document.getElementById("scoreList");
 const homeBtn = document.getElementById("homeBtn");
 const clearBtn = document.getElementById("clearBtn");
 
+// REGEX
+const re = new RegExp(/\w/);
+
 // This is a helper function called 'changeMainDisplay'
 // It has 2 parameters called 'hide' and 'show'
 // It will change what section is visible to the user on the DOM
@@ -275,11 +278,24 @@ class User {
   }
 }
 
-const submitScore = () => {
-  console.log(quiz.timer);
-  const user = new User(initialsInput.value, quiz.timer);
-  console.log(user);
-};
+initialsInput.addEventListener(
+  "keydown",
+  function (e) {
+    if (
+      e.ctrlKey ||
+      e.altKey ||
+      typeof e.key !== "string" ||
+      e.key.length !== 1
+    ) {
+      return;
+    }
+    if (!re.test(e.key)) {
+      console.log("not allowed");
+      e.preventDefault();
+    }
+  },
+  false
+);
 
 // This is a function called 'startQuiz'
 // It has 0 parameters
