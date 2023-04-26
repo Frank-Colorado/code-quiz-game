@@ -13,7 +13,7 @@ const startBtn = document.getElementById("startBtn");
 const quizDiv = document.getElementById("quiz");
 const questionDisplay = document.getElementById("question");
 const answerContainer = document.getElementById("answersContainer");
-const allanswers = document.querySelectorAll(".answerBtn");
+
 const answer1 = document.getElementById("answerBtn1");
 const answer2 = document.getElementById("answerBtn2");
 const answer3 = document.getElementById("answerBtn3");
@@ -99,6 +99,22 @@ class Quiz {
     }, 1000);
   }
 
+  // This is a method called 'getAnswerId'
+  // It has 0 parameters
+  // This method will be called by the 'getAnswers' method
+  getAnswerId() {
+    // The variable answerBtns is created
+    // Its value will be all html elements with the class 'answerBtn'
+    const answerBtns = document.querySelectorAll(".answerBtn");
+    console.log(answerBtns);
+    // The 'forEach' method will then be used on all the buttons in 'answerBtns'
+    // Each button will have the 'click' event listener added to it
+    // On click, the buttons id value will be passed to the 'checkAnswer' method
+    answerBtns.forEach((btn) => {
+      btn.onclick = () => this.checkAnswer(btn.id);
+    });
+  }
+
   // This is a method called 'createAnswerDisplay'
   // It has 1 parameter called 'index'
   // This method will be called by the 'getAnswers' method
@@ -141,6 +157,9 @@ class Quiz {
       // The 'createAnswerDisplay' method is called and passes the 'randomAnswer' that was created
       this.createAnswerDisplay(this.randomAnswer);
     });
+    console.log("sending to check answer method");
+    // After all the items have been looped through, the 'getAnswerId' method will then be called
+    this.getAnswerId();
   }
 
   // This is a method called 'setAnswers'
