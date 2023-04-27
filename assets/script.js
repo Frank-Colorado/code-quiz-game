@@ -278,6 +278,34 @@ class User {
   }
 }
 
+// This is a function called 'checkScores'
+// It has 2 parameters: 'newScore' and 'highScores'
+// This function will be called by the 'saveScores' function
+const checkScores = (newScore, highScores) => {
+  // A new variable called 'worstScore' is set to a value of 0
+  let worstScore = 0;
+  // If there are more than 4 scores in 'highScores'
+  if (highScores.length > 4) {
+    // Then 'worstScore's value will become the lowest score's value in 'highScores'
+    worstScore = highScores[highScores.length - 1].score;
+  }
+  // If the new score is greater than the value of 'worstScore'
+  if (newScore.score > worstScore) {
+    // Then the new score is added to the 'highScores' array
+    highScores.push(newScore);
+  }
+  // The array 'highScores' is then sorted from highest to lowest
+  highScores.sort(function (a, b) {
+    return b.score - a.score;
+  });
+  // If there are more than 5 scores in the array then the lowest score is removed
+  if (highScores.length > 5) {
+    highScores.pop();
+  }
+  // The 'highScores' array is returned
+  return highScores;
+};
+
 // This is a function called 'saveData'
 // It has one parameter called 'newScore'
 // This function will be called by the 'submitScore' function
@@ -287,9 +315,7 @@ const saveScores = (newScore) => {
   // The 'getItem' method is used on local storage to get the item 'highScores' but if this item can't be retrieved
   // then the value of 'highScores' is an empty array
   const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-
-  // The 'newScore' that was given when this function was called is then pushed into the 'highScores' array
-  highScores.push(newScore);
+  checkScores(newScore, highScores);
 
   // This newly updated array is then sent to local storage and set as the item 'highScores'
   localStorage.setItem("highScores", JSON.stringify(highScores));
