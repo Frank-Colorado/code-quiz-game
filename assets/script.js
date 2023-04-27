@@ -67,7 +67,6 @@ class Quiz {
     changeDisplay(timerDisplay, "");
     changeDisplay(mainHeaderDisplay, "Quiz is finished!");
     changeDisplay(userScoreDisplay, score);
-    console.log("about to be called");
     changeMainDisplay(quizDiv, finalScoreDiv);
   }
 
@@ -270,6 +269,7 @@ class Quiz {
 // new 'quiz' variable created using Quiz Class
 // This variable is created so that the methods of the Quiz Class can be called and Properties for the Quiz Class can be accessed
 const quiz = new Quiz();
+const savedQuiz = new Quiz();
 
 // User Class
 class User {
