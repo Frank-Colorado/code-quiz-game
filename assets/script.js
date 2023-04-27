@@ -57,6 +57,16 @@ class Quiz {
     this.answersArray;
     this.randomAnswer;
   }
+  // reset method
+  reset() {
+    this.isOver = savedQuiz.isOver;
+    this.timer = savedQuiz.timer;
+    this.questionCounter = savedQuiz.questionCounter;
+    this.questionsArray = savedQuiz.questionsArray;
+    this.randomQuestion = savedQuiz.randomQuestion;
+    this.answersArray = savedQuiz.answersArray;
+    this.randomAnswer = savedQuiz.randomAnswer;
+  }
 
   // This is a method called 'endQuiz'
   // It has 1 parameter called 'score'
