@@ -259,7 +259,7 @@ class Quiz {
     // A Ternary Operator is used to create a conditional statement
     // If the user has gone through all the questions in the quiz / Truthy
     this.questionCounter === quizQuestions.length
-      ? // Then the method 'endQuiz' is called and is passed the current value of the 'timer' + 1
+      ? // Then the state of 'isOver' is set to true
         (this.isOver = true)
       : // Otherwise / Falsy
         // The 'getQuestion' method is called which will display the next question/answer to the DOM
@@ -324,6 +324,7 @@ const checkScores = (newScore, highScores) => {
   // This newly updated array is then sent to local storage and set as the item 'highScores'
   localStorage.setItem("highScores", JSON.stringify(highScores));
   changeMainDisplay(finalScoreDiv, highScoresDiv);
+  changeDisplay(mainHeaderDisplay, "High Scores");
   displayScoreBoard();
 };
 

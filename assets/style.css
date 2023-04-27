@@ -192,12 +192,6 @@ li {
 
 /* HIGH SCORES STYLING */
 
-.highScoresTxt {
-  font-size: 25px;
-  font-weight: 700;
-  padding-bottom: 15px;
-}
-
 .scoreListContainer {
   width: 25%;
   justify-content: center;
