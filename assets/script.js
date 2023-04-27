@@ -260,7 +260,7 @@ class Quiz {
     // If the user has gone through all the questions in the quiz / Truthy
     this.questionCounter === quizQuestions.length
       ? // Then the method 'endQuiz' is called and is passed the current value of the 'timer' + 1
-        this.endQuiz(this.timer)
+        (this.isOver = true)
       : // Otherwise / Falsy
         // The 'getQuestion' method is called which will display the next question/answer to the DOM
         this.getQuestion();
