@@ -38,7 +38,6 @@ const changeMainDisplay = (hide, show) => {
   hide.classList.add("d-none");
   // the 'd-none' class is removed from 'show'
   show.classList.remove("d-none");
-  return;
 };
 
 // This is a helper function called 'changeDisplay'
@@ -68,6 +67,7 @@ class Quiz {
     changeDisplay(timerDisplay, "");
     changeDisplay(mainHeaderDisplay, "Quiz is finished!");
     changeDisplay(userScoreDisplay, score);
+    console.log("about to be called");
     changeMainDisplay(quizDiv, finalScoreDiv);
   }
 
@@ -87,11 +87,12 @@ class Quiz {
         quiz.timer--;
         // Otherwise / If either are Falsy
       } else {
-        // The value of the 'intervalId' is reset to null
-        intervalId = null;
+        console.log("quiz is over");
         // Then the method 'clearInterval' is called and passed the intervalId variable
         // This stops the 'setInterval' function from running
         clearInterval(intervalId);
+        // The value of the 'intervalId' is reset to null
+        intervalId = null;
         // A Ternary Operator is used to create a conditional statement
         // If the current time left is less than 0 / Truthy
         // then the 'endQuiz' method is called and passed the value 0
@@ -302,8 +303,11 @@ const checkScores = (newScore, highScores) => {
   if (highScores.length > 5) {
     highScores.pop();
   }
-  // The 'highScores' array is returned
-  return highScores;
+
+  // This newly updated array is then sent to local storage and set as the item 'highScores'
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+  changeMainDisplay(finalScoreDiv, highScoresDiv);
+  displayScoreBoard();
 };
 
 // This is a function called 'saveData'
@@ -316,10 +320,6 @@ const saveScores = (newScore) => {
   // then the value of 'highScores' is an empty array
   const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
   checkScores(newScore, highScores);
-
-  // This newly updated array is then sent to local storage and set as the item 'highScores'
-  localStorage.setItem("highScores", JSON.stringify(highScores));
-  console.log(highScores);
 };
 
 // This function listens for any 'keydown' event on the 'userNameInput' field
