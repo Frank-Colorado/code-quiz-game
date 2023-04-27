@@ -59,6 +59,7 @@ class Quiz {
   }
   // reset method
   reset() {
+    changeMainDisplay(highScoresDiv, homePageDiv);
     this.isOver = savedQuiz.isOver;
     this.timer = savedQuiz.timer;
     this.questionCounter = savedQuiz.questionCounter;
@@ -75,8 +76,10 @@ class Quiz {
     this.isOver = true;
     // The helper functions that change DOM displays are then called and passed which DOM elements with what content each should be changed to
     changeDisplay(timerDisplay, "");
+    userNameInput.value = "";
     changeDisplay(mainHeaderDisplay, "Quiz is finished!");
     changeDisplay(userScoreDisplay, score);
+
     changeMainDisplay(quizDiv, finalScoreDiv);
   }
 
@@ -293,6 +296,8 @@ class User {
 // It has 0 parameters
 // This function will be called by the 'checkScores' function
 const displayScoreBoard = () => {
+  // The highscores are cleared before the new ones are loaded
+  scoreListDisplay.innerHTML = "";
   // The 'highScores' item is grabbed from local storage and its value is set in 'scoreListItems'
   const scoreListItems = JSON.parse(localStorage.getItem("highScores"));
   // For each item in 'scoreListItems'
