@@ -373,6 +373,11 @@ userNameInput.addEventListener("keydown", function (e) {
   }
 });
 
+const clearScores = () => {
+  scoreListDisplay.innerHTML = "";
+  localStorage.clear();
+};
+
 // This is a function called 'SubmitScore'
 // It has 0 parameters
 // It is called when the 'submitBtn' is clicked
