@@ -279,6 +279,23 @@ class User {
   }
 }
 
+// This is a function called 'displayScoreBoard'
+// It has 0 parameters
+// This function will be called by the 'checkScores' function
+const displayScoreBoard = () => {
+  // The 'highScores' item is grabbed from local storage and its value is set in 'scoreListItems'
+  const scoreListItems = JSON.parse(localStorage.getItem("highScores"));
+  // For each item in 'scoreListItems'
+  scoreListItems.forEach((item) => {
+    // A new html list element is created
+    const newItem = document.createElement("li");
+    // Its innner html is set to:
+    newItem.innerHTML = `${item.name}: ${item.score}`;
+    // After the list item is created, it is appended to the Score List
+    scoreListDisplay.appendChild(newItem);
+  });
+};
+
 // This is a function called 'checkScores'
 // It has 2 parameters: 'newScore' and 'highScores'
 // This function will be called by the 'saveScores' function
