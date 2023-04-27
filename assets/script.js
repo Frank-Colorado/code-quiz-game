@@ -281,24 +281,19 @@ class User {
 // This is a function called 'saveData'
 // It has one parameter called 'newScore'
 // This function will be called by the 'submitScore' function
-const saveData = (newScore) => {
+const saveScores = (newScore) => {
   // The variable 'highScores' is created
   // The OR || operator is used to set the value of this variable
   // The 'getItem' method is used on local storage to get the item 'highScores' but if this item can't be retrieved
-  // then the 'highscores' item is set to an empty array in local storage
-  const highScores =
-    JSON.parse(localStorage.getItem("highScores")) ||
-    localStorage.setItem("highScores", "[]");
+  // then the value of 'highScores' is an empty array
+  const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
-  // The variables 'allScores' is created
-  // Its value is the item 'highScores' from local storage
-  const allScores = JSON.parse(localStorage.getItem("highScores"));
-
-  // The 'newScore' that was given when this function was called is then pushed into the 'allScores' array
-  allScores.push(newScore);
+  // The 'newScore' that was given when this function was called is then pushed into the 'highScores' array
+  highScores.push(newScore);
 
   // This newly updated array is then sent to local storage and set as the item 'highScores'
-  localStorage.setItem("highScores", JSON.stringify(allScores));
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+  console.log(highScores);
 };
 
 // This function listens for any 'keydown' event on the 'userNameInput' field
@@ -333,7 +328,7 @@ const submitScore = () => {
   // The remaining time left will be set as the user's score
   // The variable 'user' is created and holds the value of this new 'User'
   const user = new User(userNameInput.value, quiz.timer);
-  saveData(user);
+  saveScores(user);
 };
 
 // This is a function called 'startQuiz'
