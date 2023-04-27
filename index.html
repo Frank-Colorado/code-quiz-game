@@ -16,9 +16,7 @@
   <body>
     <!-- NAVBAR SECTION -->
     <header class="navbar">
-      <h2>
-        <a id="viewResults" onclick="quiz.end()"> View Test Results </a>
-      </h2>
+      <h2>Code Quiz Game</h2>
       <div class="timerDiv">
         <h2>Time:</h2>
         <h2 id="timer"></h2>
@@ -27,7 +25,7 @@
 
     <!-- MAIN SECTION -->
     <main class="wrapper">
-      <h1 id="mainHeader">Welcome to the Code Quiz!</h1>
+      <h1 id="mainHeader">Instructions</h1>
 
       <!-- HOME PAGE SECTION -->
       <div id="home" class="container">
@@ -36,9 +34,12 @@
           limit. Keep in mind that incorrect answers will penalize your
           score/time by ten seconds!
         </p>
-        <button id="startBtn" class="btn" onclick="startQuiz()">
-          START QUIZ
-        </button>
+        <div class="homeBtnContainer">
+          <button id="startBtn" class="btn" onclick="startQuiz()">
+            Start Quiz
+          </button>
+          <button id="clearBtn" class="btn">View Scores</button>
+        </div>
       </div>
 
       <!-- QUIZ SECTION -->
