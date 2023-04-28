@@ -50,7 +50,7 @@ class Quiz {
   // The Constructor method is used to create and object with keys and values for any variable created using the Quiz Class
   constructor() {
     this.isOver = false;
-    this.timer = 180;
+    this.timer = 300;
     this.questionCounter = 0;
     this.questionsArray;
     this.randomQuestion;
@@ -295,9 +295,12 @@ class User {
 // This is a function called 'displayScoreBoard'
 // It has 0 parameters
 // This function will be called by the 'checkScores' function
-const displayScoreBoard = () => {
+const displayScoreBoard = (hideDiv) => {
   // The highscores are cleared before the new ones are loaded
   scoreListDisplay.innerHTML = "";
+  // change displays
+  changeMainDisplay(hideDiv, highScoresDiv);
+  changeDisplay(mainHeaderDisplay, "High Scores");
   // The 'highScores' item is grabbed from local storage and its value is set in 'scoreListItems'
   const scoreListItems = JSON.parse(localStorage.getItem("highScores"));
   // For each item in 'scoreListItems'
@@ -338,9 +341,7 @@ const checkScores = (newScore, highScores) => {
 
   // This newly updated array is then sent to local storage and set as the item 'highScores'
   localStorage.setItem("highScores", JSON.stringify(highScores));
-  changeMainDisplay(finalScoreDiv, highScoresDiv);
-  changeDisplay(mainHeaderDisplay, "High Scores");
-  displayScoreBoard();
+  displayScoreBoard(finalScoreDiv);
 };
 
 // This is a function called 'saveData'
