@@ -57,9 +57,14 @@ class Quiz {
     this.answersArray;
     this.randomAnswer;
   }
-  // reset method
+  // This is a method called 'reset'
+  // It has 0 parameters
+  // This method will be called when the 'homeBtn' is clicked
   reset() {
+    // Helper function changes the display
     changeMainDisplay(highScoresDiv, homePageDiv);
+    // All of the 'this' quiz values are set to the values of the 'saveQuiz' values
+    // This is so that then next quiz the user takes is still completely random
     this.isOver = savedQuiz.isOver;
     this.timer = savedQuiz.timer;
     this.questionCounter = savedQuiz.questionCounter;
@@ -73,13 +78,14 @@ class Quiz {
   // It has 1 parameter called 'score'
   // This method will be called when there is no more time left in the quiz or there are no more questions in the quiz
   endQuiz(score) {
+    // The state of the quiz is set to over
     this.isOver = true;
+    // Any value inside the 'userNameInput' is cleared
+    userNameInput.value = "";
     // The helper functions that change DOM displays are then called and passed which DOM elements with what content each should be changed to
     changeDisplay(timerDisplay, "");
-    userNameInput.value = "";
     changeDisplay(mainHeaderDisplay, "Quiz is finished!");
     changeDisplay(userScoreDisplay, score);
-
     changeMainDisplay(quizDiv, finalScoreDiv);
   }
 
@@ -146,6 +152,7 @@ class Quiz {
       button.classList.add("wrong");
       this.timer -= 10;
     }
+    // Unclickable method is called
     this.unclickable();
   }
 
