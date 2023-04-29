@@ -30,6 +30,8 @@ https://www.youtube.com/watch?v=QU6z69P5BrU&list=PLJAFEg3vkcQN6NGwzI0KX_ZC6dLQjk
 
 https://codepen.io/hsucherng/pen/MzrxMM : This post on codepen was used as a reference to create the retrictions on the user name input field for the quiz game.
 
+Links to other sources referenced can be found commented throughout the script.js file
+
 ## License
 
 Please refer to the LICENSE in the repo.
