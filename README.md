@@ -6,7 +6,11 @@ This is a JavaScript Code Quiz Game which was created to complete my bootcamp's 
 
 ## Visuals
 
+![image](https://user-images.githubusercontent.com/123683792/235273781-f0349526-4b97-4201-8e46-b852ef836515.png)
+
 ## Website URL
+
+https://frank-colorado.github.io/code-quiz-game/
 
 ## Installation
 
