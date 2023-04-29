@@ -1,13 +1,11 @@
 // DOM Navbar Variables
 const timerDisplay = document.getElementById("timer");
-const resultsDisplay = document.getElementById("results");
 
 // DOM Main Section Variables
 const mainHeaderDisplay = document.getElementById("mainHeader");
 
 // DOM Home Page Section Variables
 const homePageDiv = document.getElementById("home");
-const startBtn = document.getElementById("startBtn");
 
 // DOM Quiz Section Variables
 const quizDiv = document.getElementById("quiz");
@@ -19,15 +17,12 @@ const nextBtn = document.getElementById("nextBtn");
 const finalScoreDiv = document.getElementById("finalScore");
 const userScoreDisplay = document.getElementById("userScore");
 const userNameInput = document.getElementById("userName");
-const submitBtn = document.getElementById("submitBtn");
 
 // DOM High Scores Section Variables
 const highScoresDiv = document.getElementById("highScores");
 const scoreListDisplay = document.getElementById("scoreList");
-const homeBtn = document.getElementById("homeBtn");
-const clearBtn = document.getElementById("clearBtn");
 
-// REGEX
+// REGEX variable
 const re = new RegExp(/\w/);
 
 // This is a helper function called 'changeMainDisplay'
@@ -96,16 +91,15 @@ class Quiz {
     // The Asynchronous method setInterval is called and stored inside a variable called 'intervalId'
     // setInterval will run on its own during the quiz and will run the created function every 1 second
     let intervalId = setInterval(function () {
-      // An if/else is used to create a conditional statement
+      // An if/else conditional statement
       // If the current time left in the quiz is greater than 0 AND the quiz isn't over / Both must be Truthy
       if (quiz.timer >= 0 && !quiz.isOver) {
-        // Then the 'changeDisplay' method is called which updates the timer display with the current time left
+        // Then helper function is called to update the timer display with the current time left
         changeDisplay(timerDisplay, quiz.timer);
         // Then the amount of time left is decremented by 1
         quiz.timer--;
         // Otherwise / If either are Falsy
       } else {
-        console.log("quiz is over");
         // Then the method 'clearInterval' is called and passed the intervalId variable
         // This stops the 'setInterval' function from running
         clearInterval(intervalId);
@@ -117,7 +111,7 @@ class Quiz {
         // Otherwise, the 'endQuiz' method is called and passed the value of 'quiz.timer'
         quiz.timer < 0 ? quiz.endQuiz(0) : quiz.endQuiz(quiz.timer);
         // If the user selected a wrong answer and 10 was decremented from the timer when the time left was <10
-        // A negtive value and score would be displayed so this conditional was created to fix this 'bug'cd
+        // A negtive value and score would be displayed so this conditional was created to fix this 'bug'
       }
     }, 1000);
   }
@@ -127,6 +121,7 @@ class Quiz {
   // This method will be called by the 'checkAnswer' method
   unclickable() {
     // The 'Array.from' method is used to convert the array-like 'answerContainer.children' object to an array
+    // https://stackdiary.com/guides/typeerror-foreach-is-not-a-function/ : This article was used as reference for the Array.from method
     // This array is stored in the variable 'answers'
     const answers = Array.from(answerContainer.children);
     // answers is now an array so the '.forEach' method can be called on it
@@ -150,6 +145,7 @@ class Quiz {
     } else {
       // Otherwise, the class 'wrong' will be added to the button / Falsy
       button.classList.add("wrong");
+      // 10 seconds are decremented from the timer
       this.timer -= 10;
     }
     // Unclickable method is called
@@ -178,7 +174,7 @@ class Quiz {
     // The variable 'answerBtn' is created
     // Its value is a newly created <button> element
     const answerBtn = document.createElement("button");
-    // The inner HTML of the button is set to a random answer of the current question using the index given on 'randomQuestion.answers'
+    // The inner HTML of the button is set to a random answer for the current question
     answerBtn.innerHTML = this.randomQuestion.answers[index];
     // The id of the button is then set to the index given.
     // This id will be how we correctly identify the correct answer
@@ -194,17 +190,18 @@ class Quiz {
   // It has 1 parameter called 'array'
   // This method will be called by the 'setAnswers' method
   getAnswers(array) {
-    // The current contents of the 'answerContainer' is set to an empty string using the 'changeDisplay' helper function
+    // Helper function is used to clear any previous questions
     changeDisplay(answerContainer, "");
+    // The 'nextBtn' is hidden
     nextBtn.classList.add("d-none");
-    // The 'forEach' method will then be used on the array it was given
+    // The 'forEach' method will then be used on the array passed
     // For every item in the array it was given this method will -
     array.forEach((item) => {
-      // A random answer is chosen from the 'answersArray' and stored within 'randomAnswer'
+      // Choose a random answer from the 'answersArray' and store it in 'randomAnswer'
       this.randomAnswer =
         this.answersArray[Math.floor(Math.random() * this.answersArray.length)];
 
-      // The variable 'answerIndex' is created
+      // Create the variable 'answerIndex'
       // Its value is the current index of 'randomAnswer' in the 'answersArray'
       const answerIndex = this.answersArray.indexOf(this.randomAnswer);
 
@@ -224,8 +221,8 @@ class Quiz {
   setAnswers(array) {
     // The map method will be used on the array its given
     // The index of every item in the array will be added to the 'answersArray' array
-    // This array of index's is created so that the  will be able to be identified after the array is 'randomized'/changed for each new question without changing the original array
-    this.answersArray = array.map((option, index) => index);
+    // This array of index's is created so that the right answer will be able to be identified after the array is 'randomized'/changed for each new question without changing the original array
+    this.answersArray = array.map((answer, index) => index);
     // The 'getAnswers' method is called and is passed the array that was just mapped through
     this.getAnswers(array);
   }
@@ -239,7 +236,7 @@ class Quiz {
     const counter = `Question ${(this.questionCounter += 1)} of ${
       quizQuestions.length
     }`;
-    // 'counter' is passed to the 'changeDisplay' helper function
+    // 'counter' is passed to helper function to change display
     changeDisplay(mainHeaderDisplay, counter);
 
     // A random question is chosen from the 'questionsArray' and stored within 'randomQuestion'
@@ -247,10 +244,10 @@ class Quiz {
       this.questionsArray[
         Math.floor(Math.random() * this.questionsArray.length)
       ];
-    // The 'q' key from 'randomQuestion' which holds the question's text is passed to the 'changeDisplay' helper function
+    // The 'q' key from 'randomQuestion' which holds the current question's text is passed to helper function to change display
     changeDisplay(questionDisplay, this.randomQuestion.q);
     // The variable 'questionIndex' is created
-    // Its value is the current index of 'randomQuestion' in the 'questionsArray'
+    // Its value is the index of 'randomQuestion' in the 'questionsArray'
     const questionIndex = this.questionsArray.indexOf(this.randomQuestion);
     // That question is then removed from the 'questionsArray' so that it can't be repeated during the quiz
     this.questionsArray.splice(questionIndex, 1);
@@ -264,7 +261,7 @@ class Quiz {
   // This method will be called by the 'startQuiz' function
   setQuestions() {
     // The map method will be used on the array 'quizQuestions'
-    // Every item in the 'quizQuestions' array will be added to the 'questionsArray' array
+    // Every item in the array will be added to the 'questionsArray' array
     // This identical array is created so that the contents can be 'randomized' and changed for each new quiz without changing the original array
     this.questionsArray = quizQuestions.map((question) => question);
     // The 'getQuestion' method is called
@@ -286,9 +283,25 @@ class Quiz {
   }
 }
 
+// This is a function called 'startQuiz'
+// It has 0 parameters
+// It is called when the 'startBtn' is clicked
+const startQuiz = () => {
+  // Helper function is called to change the DOMfrom the Home Page section to the Quiz section
+  changeMainDisplay(homePageDiv, quizDiv);
+  // Helper function called to clear the text of the Main Header
+  changeDisplay(mainHeaderDisplay, "");
+  // The 'countdown' method is called to begin the countdown timer for the quiz
+  quiz.countdown();
+  // The 'setQuestions' method is called to create/display a new random set of questions/answers for the quiz
+  quiz.setQuestions();
+};
+
 // new 'quiz' variable created using Quiz Class
 // This variable is created so that the methods of the Quiz Class can be called and Properties for the Quiz Class can be accessed
 const quiz = new Quiz();
+// 'saveQuiz' variable which will hold the default values of the quiz
+// This will be used to reset the quiz
 const savedQuiz = new Quiz();
 
 // User Class
@@ -352,7 +365,7 @@ const checkScores = (newScore, highScores) => {
 };
 
 // This is a function called 'saveData'
-// It has one parameter called 'newScore'
+// It has 1 parameter called 'newScore'
 // This function will be called by the 'submitScore' function
 const saveScores = (newScore) => {
   // The variable 'highScores' is created
@@ -360,7 +373,31 @@ const saveScores = (newScore) => {
   // The 'getItem' method is used on local storage to get the item 'highScores' but if this item can't be retrieved
   // then the value of 'highScores' is an empty array
   const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+  // The function 'checkScores' is called and passed the new user score and the highscores array
   checkScores(newScore, highScores);
+};
+
+// This is a function called 'SubmitScore'
+// It has 0 parameters
+// It is called when the 'submitBtn' is clicked
+const submitScore = () => {
+  // A new user obj is created using the Class constructor 'User'
+  // The constructor is given the value of the input field which will be set as the user's name
+  // The remaining time left will be set as the user's score
+  // The variable 'user' is created and holds the value of this new 'User'
+  const user = new User(userNameInput.value, quiz.timer);
+  // The saveScores function is called and passed 'user'
+  saveScores(user);
+};
+
+// This is a function called 'clearScores'
+// It has 0 parameters
+// It is called when the 'clearBtn' is clicked
+const clearScores = () => {
+  // The scoreboard display is cleared
+  scoreListDisplay.innerHTML = "";
+  // The user's local storage is cleared
+  localStorage.clear();
 };
 
 // This function listens for any 'keydown' event on the 'userNameInput' field
@@ -385,34 +422,3 @@ userNameInput.addEventListener("keydown", function (e) {
     e.preventDefault();
   }
 });
-
-const clearScores = () => {
-  scoreListDisplay.innerHTML = "";
-  localStorage.clear();
-};
-
-// This is a function called 'SubmitScore'
-// It has 0 parameters
-// It is called when the 'submitBtn' is clicked
-const submitScore = () => {
-  // A new user obj is created using the Class constructor 'User'
-  // The constructor is given the value of the input field which will be set as the user's name
-  // The remaining time left will be set as the user's score
-  // The variable 'user' is created and holds the value of this new 'User'
-  const user = new User(userNameInput.value, quiz.timer);
-  saveScores(user);
-};
-
-// This is a function called 'startQuiz'
-// It has 0 parameters
-// It is called when the 'startBtn' is clicked
-const startQuiz = () => {
-  // 'changeMainDisplay' function is called which changes the Main DOM Display from the Home Page section to the Quiz section
-  changeMainDisplay(homePageDiv, quizDiv);
-  // 'changeDisplay' function is called so the Main Header text content is cleared
-  changeDisplay(mainHeaderDisplay, "");
-  // The 'countdown' method is called on the 'quiz' variable which begins starts the timer for the quiz
-  quiz.countdown();
-  // The 'setQuestions' method is called on the 'quiz' variable which creates/displays a new random set of questions/answers for the quiz
-  quiz.setQuestions();
-};
