@@ -56,6 +56,8 @@ class Quiz {
   // It has 0 parameters
   // This method will be called when the 'homeBtn' is clicked
   reset() {
+    // Helper function changes header
+    changeDisplay(mainHeaderDisplay, "Instructions");
     // Helper function changes the display
     changeMainDisplay(highScoresDiv, homePageDiv);
     // All of the 'this' quiz values are set to the values of the 'saveQuiz' values
