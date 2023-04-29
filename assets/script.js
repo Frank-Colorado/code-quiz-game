@@ -23,6 +23,7 @@ const highScoresDiv = document.getElementById("highScores");
 const scoreListDisplay = document.getElementById("scoreList");
 
 // REGEX variable
+// This video was used as reference for creating a new RegExp : https://www.youtube.com/watch?v=sXQxhojSdZM
 const re = new RegExp(/\w/);
 
 // This is a helper function called 'changeMainDisplay'
@@ -90,6 +91,7 @@ class Quiz {
   // It has 0 parameters
   // This method will be called by the 'startQuiz' function
   countdown() {
+    // This article was referenced to use the 'setInterval' method : https://www.w3schools.com/jsref/met_win_setinterval.asp
     // The Asynchronous method setInterval is called and stored inside a variable called 'intervalId'
     // setInterval will run on its own during the quiz and will run the created function every 1 second
     let intervalId = setInterval(function () {
@@ -123,7 +125,7 @@ class Quiz {
   // This method will be called by the 'checkAnswer' method
   unclickable() {
     // The 'Array.from' method is used to convert the array-like 'answerContainer.children' object to an array
-    // https://stackdiary.com/guides/typeerror-foreach-is-not-a-function/ : This article was used as reference for the Array.from method
+    // This article was used as reference for the Array.from method : https://stackdiary.com/guides/typeerror-foreach-is-not-a-function/
     // This array is stored in the variable 'answers'
     const answers = Array.from(answerContainer.children);
     // answers is now an array so the '.forEach' method can be called on it
@@ -196,6 +198,7 @@ class Quiz {
     changeDisplay(answerContainer, "");
     // The 'nextBtn' is hidden
     nextBtn.classList.add("d-none");
+    // This article was referenced to use the 'forEach' method : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
     // The 'forEach' method will then be used on the array passed
     // For every item in the array it was given this method will -
     array.forEach((item) => {
@@ -250,6 +253,7 @@ class Quiz {
     changeDisplay(questionDisplay, this.randomQuestion.q);
     // The variable 'questionIndex' is created
     // Its value is the index of 'randomQuestion' in the 'questionsArray'
+    // This article was referenced to use the 'indexOf' method : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
     const questionIndex = this.questionsArray.indexOf(this.randomQuestion);
     // That question is then removed from the 'questionsArray' so that it can't be repeated during the quiz
     this.questionsArray.splice(questionIndex, 1);
@@ -265,6 +269,7 @@ class Quiz {
     // The map method will be used on the array 'quizQuestions'
     // Every item in the array will be added to the 'questionsArray' array
     // This identical array is created so that the contents can be 'randomized' and changed for each new quiz without changing the original array
+    // This article was referenced to use the 'map' method : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
     this.questionsArray = quizQuestions.map((question) => question);
     // The 'getQuestion' method is called
     this.getQuestion();
@@ -275,6 +280,7 @@ class Quiz {
   // This method will be called when the 'nextBtn' is clicked
   nextQuestion() {
     // A Ternary Operator is used to create a conditional statement
+    // This article was used as reference for ternary operators : https://www.w3schools.com/react/react_es6_ternary.asp
     // If the user has gone through all the questions in the quiz / Truthy
     this.questionCounter === quizQuestions.length
       ? // Then the state of 'isOver' is set to true
@@ -353,6 +359,7 @@ const checkScores = (newScore, highScores) => {
     highScores.push(newScore);
   }
   // The array 'highScores' is then sorted from highest to lowest
+  // This article was referenced to use the 'sort' method : https://www.w3schools.com/js/js_array_sort.asp
   highScores.sort(function (a, b) {
     return b.score - a.score;
   });

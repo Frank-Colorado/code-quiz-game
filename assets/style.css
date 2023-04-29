@@ -126,6 +126,9 @@ li {
   overflow: hidden;
 }
 
+/* https://medium.com/web-dev-survey-from-kyoto/change-the-background-color-with-transition-animation-web-dev-survey-from-kyoto-ef2f65756e9a 
+ This article was used as reference to create these css animatins */
+
 .answerBtn.correct::before {
   content: "";
   position: absolute;
