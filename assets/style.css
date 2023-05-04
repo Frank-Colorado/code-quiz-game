@@ -12,15 +12,6 @@ body {
   background: #8990ec;
 }
 
-a {
-  color: black;
-  cursor: pointer;
-}
-
-a:hover {
-  color: white;
-}
-
 button {
   background: #8990ec;
   color: #222;
